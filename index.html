@@ -1,11 +1,203 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>عرض المنشورات الإسلامية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #faf5e4;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #2c786c, #004445);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .filter-btn {
+      background: white;
+      border: 2px solid #2c786c;
+      color: #2c786c;
+      padding: 0.5rem 1.5rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background-color: #2c786c;
+      color: white;
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 1.5rem;
+      padding: 0 1rem 2rem;
+    }
+
+    .post-card {
+      background: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .post-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .post-header {
+      background-color: #004445;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .post-type {
+      background: #f8b400;
+      color: #000;
+      padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
+      font-size: 0.8rem;
+    }
+
+    .post-body {
+      padding: 1.5rem;
+    }
+
+    .post-title {
+      font-size: 1.3rem;
+      color: #004445;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 0.5rem;
+    }
+
+    .post-content {
+      white-space: pre-line;
+      font-size: 1.1rem;
+    }
+
+    .post-date {
+      font-size: 0.85rem;
+      color: #666;
+      padding: 0.75rem 1rem;
+      border-top: 1px dashed #ddd;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .posts-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-    
+  <header class="header">
+    <h1>📚 المنشورات الإسلامية</h1>
+  </header>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="الكل">الكل</button>
+    <button class="filter-btn" data-filter="حديث">الأحاديث</button>
+    <button class="filter-btn" data-filter="فتوى">الفتاوى</button>
+    <button class="filter-btn" data-filter="منشور">المنشورات</button>
+  </div>
+
+  <div class="posts-grid" id="postsContainer">
+    <p style="text-align:center;">جاري تحميل المنشورات...</p>
+  </div>
+
+  <script>
+    const postsUrl = "https://aboelfooz.github.io/islamic-site/posts.json";
+
+    async function loadPosts() {
+      try {
+        const res = await fetch(postsUrl);
+        const posts = await res.json();
+
+        posts.sort((a, b) => new Date(b.التاريخ) - new Date(a.التاريخ));
+        displayPosts(posts);
+        setupFilters(posts);
+      } catch (err) {
+        document.getElementById("postsContainer").innerHTML = `
+          <p style="color:red; text-align:center;">فشل في تحميل المنشورات 😢</p>
+        `;
+        console.error(err);
+      }
+    }
+
+    function displayPosts(posts, filter = "الكل") {
+      const container = document.getElementById("postsContainer");
+
+      const filtered = filter === "الكل" ? posts : posts.filter(p => p.النوع === filter);
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<p style="text-align:center;">لا توجد منشورات من هذا النوع.</p>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(post => {
+        const type = post.النوع || "غير محدد";
+        const title = post.العنوان || "بدون عنوان";
+        const content = (post.المحتوى || "لا يوجد محتوى").replace(/\n/g, "<br>");
+        const date = post.التاريخ || "غير معروف";
+
+        return `
+          <div class="post-card">
+            <div class="post-header">
+              <h3>${type}</h3>
+              <span class="post-type">${type}</span>
+            </div>
+            <div class="post-body">
+              <div class="post-title">${title}</div>
+              <div class="post-content">${content}</div>
+            </div>
+            <div class="post-date">📅 ${date}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function setupFilters(posts) {
+      document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          displayPosts(posts, btn.dataset.filter);
+        });
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", loadPosts);
+  </script>
 </body>
 </html>
