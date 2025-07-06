@@ -3,19 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="معهد جيل الأمة - مصادر إسلامية موثوقة">
   <title>معهد جيل الأمة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --primary-color: #2c786c;
+      --secondary-color: #004445;
+      --accent-color: #f8b400;
+      --text-color: #333;
+      --light-bg: #faf5e4;
+    }
+    
     body {
       font-family: 'Tajawal', sans-serif;
-      background-color: #faf5e4;
-      color: #333;
+      background-color: var(--light-bg);
+      color: var(--text-color);
       margin: 0;
       padding: 0;
+      line-height: 1.6;
     }
 
     .header {
-      background: linear-gradient(135deg, #2c786c, #004445);
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       color: white;
       padding: 2rem 1rem;
       text-align: center;
@@ -32,22 +44,25 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-bottom: 2rem;
+      margin: 0 auto 2rem;
+      max-width: 1200px;
+      padding: 0 1rem;
     }
 
     .filter-btn {
       background: white;
-      border: 2px solid #2c786c;
-      color: #2c786c;
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
       padding: 0.5rem 1.5rem;
       border-radius: 2rem;
       cursor: pointer;
       font-weight: bold;
+      transition: all 0.3s ease;
     }
 
     .filter-btn.active,
     .filter-btn:hover {
-      background-color: #2c786c;
+      background-color: var(--primary-color);
       color: white;
     }
 
@@ -56,6 +71,8 @@
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
       gap: 1.5rem;
       padding: 0 1rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .post-card {
@@ -71,19 +88,21 @@
     }
 
     .post-header {
-      background-color: #004445;
+      background-color: var(--secondary-color);
       color: white;
       padding: 1rem;
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
 
     .post-type {
-      background: #f8b400;
+      background: var(--accent-color);
       color: #000;
       padding: 0.25rem 0.75rem;
       border-radius: 1rem;
       font-size: 0.8rem;
+      font-weight: bold;
     }
 
     .post-body {
@@ -92,10 +111,11 @@
 
     .post-title {
       font-size: 1.3rem;
-      color: #004445;
+      color: var(--secondary-color);
       margin-bottom: 1rem;
       border-bottom: 2px solid #eee;
       padding-bottom: 0.5rem;
+      font-weight: 700;
     }
 
     .post-content {
@@ -113,43 +133,102 @@
       gap: 0.5rem;
     }
 
+    .loading {
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(0, 68, 69, 0.1);
+      border-radius: 50%;
+      border-top-color: var(--primary-color);
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
     @media (max-width: 768px) {
       .posts-grid {
         grid-template-columns: 1fr;
       }
     }
+
+    @media (max-width: 480px) {
+      .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <header class="header">
+  <header class="header" role="banner">
     <h1>معهد جيل الأمة</h1>
   </header>
 
-  <div class="filter-bar">
-    <button class="filter-btn active" data-filter="الكل">الكل</button>
-    <button class="filter-btn" data-filter="حديث">الأحاديث</button>
-    <button class="filter-btn" data-filter="فتوى">الفتاوى</button>
-    <button class="filter-btn" data-filter="منشور">المنشورات</button>
-  </div>
+  <main role="main">
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="الكل" aria-label="عرض جميع المنشورات">الكل</button>
+      <button class="filter-btn" data-filter="حديث" aria-label="تصفية بالأحاديث">الأحاديث</button>
+      <button class="filter-btn" data-filter="فتوى" aria-label="تصفية بالفتاوى">الفتاوى</button>
+      <button class="filter-btn" data-filter="منشور" aria-label="تصفية بالمنشورات">المنشورات</button>
+    </div>
 
-  <div class="posts-grid" id="postsContainer">
-    <p style="text-align:center;">جاري تحميل المنشورات...</p>
-  </div>
+    <div class="posts-grid" id="postsContainer">
+      <div class="loading">
+        <div class="spinner" aria-hidden="true"></div>
+      </div>
+    </div>
+  </main>
 
   <script>
     const postsUrl = "https://aboelfooz.github.io/islamic-site/posts.json";
 
+    function escapeHtml(unsafe) {
+      return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
     async function loadPosts() {
+      const container = document.getElementById("postsContainer");
+      
+      if (!navigator.onLine) {
+        container.innerHTML = `
+          <div style="text-align:center; padding:2rem; color:var(--secondary-color)">
+            <p>⚠️ لا يوجد اتصال بالإنترنت</p>
+            <p>الرجاء التأكد من اتصالك ثم المحاولة مرة أخرى</p>
+          </div>
+        `;
+        return;
+      }
+
       try {
         const res = await fetch(postsUrl);
+        
+        if (!res.ok) {
+          throw new Error('فشل في جلب البيانات');
+        }
+        
         const posts = await res.json();
 
         posts.sort((a, b) => new Date(b.التاريخ) - new Date(a.التاريخ));
         displayPosts(posts);
         setupFilters(posts);
       } catch (err) {
-        document.getElementById("postsContainer").innerHTML = `
-          <p style="color:red; text-align:center;">فشل في تحميل المنشورات 😢</p>
+        container.innerHTML = `
+          <div style="text-align:center; padding:2rem; color:#d32f2f">
+            <p>فشل في تحميل المنشورات 😢</p>
+            <p>${escapeHtml(err.message)}</p>
+          </div>
         `;
         console.error(err);
       }
@@ -161,20 +240,24 @@
       const filtered = filter === "الكل" ? posts : posts.filter(p => p.النوع === filter);
 
       if (filtered.length === 0) {
-        container.innerHTML = `<p style="text-align:center;">لا توجد منشورات من هذا النوع.</p>`;
+        container.innerHTML = `
+          <div style="text-align:center; padding:2rem; color:var(--secondary-color)">
+            <p>لا توجد منشورات من هذا النوع.</p>
+          </div>
+        `;
         return;
       }
 
       container.innerHTML = filtered.map(post => {
-        const type = post.النوع || "غير محدد";
-        const title = post.العنوان || "بدون عنوان";
-        const content = (post.المحتوى || "لا يوجد محتوى").replace(/\n/g, "<br>");
-        const date = post.التاريخ || "غير معروف";
+        const type = escapeHtml(post.النوع || "غير محدد");
+        const title = escapeHtml(post.العنوان || "بدون عنوان");
+        const content = escapeHtml(post.المحتوى || "لا يوجد محتوى").replace(/\n/g, "<br>");
+        const date = escapeHtml(post.التاريخ || "غير معروف");
 
         return `
-          <div class="post-card">
+          <article class="post-card">
             <div class="post-header">
-              <h3>${type}</h3>
+              <h2>${type}</h2>
               <span class="post-type">${type}</span>
             </div>
             <div class="post-body">
@@ -182,7 +265,7 @@
               <div class="post-content">${content}</div>
             </div>
             <div class="post-date">📅 ${date}</div>
-          </div>
+          </article>
         `;
       }).join('');
     }
@@ -198,6 +281,9 @@
     }
 
     document.addEventListener("DOMContentLoaded", loadPosts);
+    
+    // إعادة تحميل عند عودة الاتصال
+    window.addEventListener('online', loadPosts);
   </script>
 </body>
 </html>
