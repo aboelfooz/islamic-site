@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     :root {
       --primary-color: #2c786c;
@@ -15,6 +16,7 @@
       --accent-color: #f8b400;
       --text-color: #333;
       --light-bg: #faf5e4;
+      --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
     
     body {
@@ -32,6 +34,7 @@
       padding: 2rem 1rem;
       text-align: center;
       margin-bottom: 2rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
     .header h1 {
@@ -58,6 +61,9 @@
       cursor: pointer;
       font-weight: bold;
       transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .filter-btn.active,
@@ -78,13 +84,42 @@
     .post-card {
       background: white;
       border-radius: 0.5rem;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--card-shadow);
       overflow: hidden;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
     }
 
     .post-card:hover {
       transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .post-image-container {
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .post-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .post-card:hover .post-image {
+      transform: scale(1.05);
+    }
+
+    .no-image {
+      background: linear-gradient(135deg, #f5f7fa, #e4e8eb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      font-size: 1.2rem;
     }
 
     .post-header {
@@ -107,6 +142,7 @@
 
     .post-body {
       padding: 1.5rem;
+      flex-grow: 1;
     }
 
     .post-title {
@@ -121,6 +157,7 @@
     .post-content {
       white-space: pre-line;
       font-size: 1.1rem;
+      line-height: 1.8;
     }
 
     .post-date {
@@ -137,6 +174,7 @@
       display: flex;
       justify-content: center;
       padding: 2rem;
+      grid-column: 1 / -1;
     }
 
     .spinner {
@@ -148,6 +186,26 @@
       animation: spin 1s ease-in-out infinite;
     }
 
+    .empty-state {
+      text-align: center;
+      padding: 2rem;
+      grid-column: 1 / -1;
+      color: var(--secondary-color);
+    }
+
+    .empty-state i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #ccc;
+    }
+
+    .error-state {
+      text-align: center;
+      padding: 2rem;
+      grid-column: 1 / -1;
+      color: #d32f2f;
+    }
+
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
@@ -156,12 +214,20 @@
       .posts-grid {
         grid-template-columns: 1fr;
       }
+      
+      .post-image-container {
+        height: 250px;
+      }
     }
 
     @media (max-width: 480px) {
       .filter-btn {
         padding: 0.5rem 1rem;
         font-size: 0.9rem;
+      }
+      
+      .header h1 {
+        font-size: 1.5rem;
       }
     }
   </style>
@@ -173,10 +239,18 @@
 
   <main role="main">
     <div class="filter-bar">
-      <button class="filter-btn active" data-filter="الكل" aria-label="عرض جميع المنشورات">الكل</button>
-      <button class="filter-btn" data-filter="حديث" aria-label="تصفية بالأحاديث">الأحاديث</button>
-      <button class="filter-btn" data-filter="فتوى" aria-label="تصفية بالفتاوى">الفتاوى</button>
-      <button class="filter-btn" data-filter="منشور" aria-label="تصفية بالمنشورات">المنشورات</button>
+      <button class="filter-btn active" data-filter="الكل" aria-label="عرض جميع المنشورات">
+        <i class="fas fa-layer-group"></i> الكل
+      </button>
+      <button class="filter-btn" data-filter="حديث" aria-label="تصفية بالأحاديث">
+        <i class="fas fa-book-quran"></i> الأحاديث
+      </button>
+      <button class="filter-btn" data-filter="فتوى" aria-label="تصفية بالفتاوى">
+        <i class="fas fa-scale-balanced"></i> الفتاوى
+      </button>
+      <button class="filter-btn" data-filter="منشور" aria-label="تصفية بالمنشورات">
+        <i class="fas fa-newspaper"></i> المنشورات
+      </button>
     </div>
 
     <div class="posts-grid" id="postsContainer">
@@ -187,7 +261,8 @@
   </main>
 
   <script>
-    const postsUrl = "https://aboelfooz.github.io/islamic-site/posts.json";
+    const postsUrl = "posts.json";
+    const imagesBaseUrl = "images/";
 
     function escapeHtml(unsafe) {
       return unsafe
@@ -198,13 +273,31 @@
         .replace(/'/g, "&#039;");
     }
 
+    function formatDate(dateString) {
+      if (!dateString) return "غير معروف";
+      
+      try {
+        const date = new Date(dateString);
+        if (isNaN(date)) return dateString;
+        
+        return date.toLocaleDateString('ar-EG', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+      } catch {
+        return dateString;
+      }
+    }
+
     async function loadPosts() {
       const container = document.getElementById("postsContainer");
       
       if (!navigator.onLine) {
         container.innerHTML = `
-          <div style="text-align:center; padding:2rem; color:var(--secondary-color)">
-            <p>⚠️ لا يوجد اتصال بالإنترنت</p>
+          <div class="error-state">
+            <i class="fas fa-wifi"></i>
+            <p>لا يوجد اتصال بالإنترنت</p>
             <p>الرجاء التأكد من اتصالك ثم المحاولة مرة أخرى</p>
           </div>
         `;
@@ -220,13 +313,15 @@
         
         const posts = await res.json();
 
+        // ترتيب المنشورات من الأحدث إلى الأقدم
         posts.sort((a, b) => new Date(b.التاريخ) - new Date(a.التاريخ));
         displayPosts(posts);
         setupFilters(posts);
       } catch (err) {
         container.innerHTML = `
-          <div style="text-align:center; padding:2rem; color:#d32f2f">
-            <p>فشل في تحميل المنشورات 😢</p>
+          <div class="error-state">
+            <i class="fas fa-exclamation-triangle"></i>
+            <p>فشل في تحميل المنشورات</p>
             <p>${escapeHtml(err.message)}</p>
           </div>
         `;
@@ -241,8 +336,9 @@
 
       if (filtered.length === 0) {
         container.innerHTML = `
-          <div style="text-align:center; padding:2rem; color:var(--secondary-color)">
-            <p>لا توجد منشورات من هذا النوع.</p>
+          <div class="empty-state">
+            <i class="fas fa-box-open"></i>
+            <p>لا توجد منشورات من هذا النوع</p>
           </div>
         `;
         return;
@@ -252,19 +348,34 @@
         const type = escapeHtml(post.النوع || "غير محدد");
         const title = escapeHtml(post.العنوان || "بدون عنوان");
         const content = escapeHtml(post.المحتوى || "لا يوجد محتوى").replace(/\n/g, "<br>");
-        const date = escapeHtml(post.التاريخ || "غير معروف");
+        const date = formatDate(post.التاريخ);
+        const imageUrl = post.الصورة ? `${imagesBaseUrl}${post.الصورة.split('/').pop()}` : null;
+
+        const imageHtml = imageUrl ? 
+          `<div class="post-image-container">
+            <img src="${imageUrl}" alt="${title}" class="post-image" loading="lazy">
+          </div>` :
+          `<div class="post-image-container no-image">
+            <span>لا توجد صورة</span>
+          </div>`;
+
+        // تحديد أيقونة حسب نوع المنشور
+        let typeIcon = 'fa-file-alt';
+        if (type.includes('حديث')) typeIcon = 'fa-book-quran';
+        else if (type.includes('فتوى')) typeIcon = 'fa-scale-balanced';
 
         return `
           <article class="post-card">
+            ${imageHtml}
             <div class="post-header">
-              <h2>${type}</h2>
+              <h2><i class="fas ${typeIcon}"></i> ${type}</h2>
               <span class="post-type">${type}</span>
             </div>
             <div class="post-body">
               <div class="post-title">${title}</div>
               <div class="post-content">${content}</div>
             </div>
-            <div class="post-date">📅 ${date}</div>
+            <div class="post-date"><i class="far fa-calendar-alt"></i> ${date}</div>
           </article>
         `;
       }).join('');
