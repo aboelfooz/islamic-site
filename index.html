@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="معهد جيل الأمة -   ">
+  <meta name="description" content="معهد جيل الأمة - مصادر إسلامية موثوقة">
   <title>معهد جيل الأمة</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
       --light-bg: #faf5e4;
       --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
-    
+
     body {
       font-family: 'Tajawal', sans-serif;
       background-color: var(--light-bg);
@@ -39,23 +39,23 @@
       margin-bottom: 2rem;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
-    .images{
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      
-    }
-
-    .header img{
-      border-radius: 8px;
-      margin-left: 3px;
-      width: 85px;
-      height: 85px;
-    }
 
     .header h1 {
       margin: 0;
       font-size: 2rem;
+    }
+
+    .images {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .header img {
+      border-radius: 8px;
+      margin-left: 3px;
+      width: 60px;
+      height: 60px;
     }
 
     .filter-bar {
@@ -222,6 +222,14 @@
       color: #d32f2f;
     }
 
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 14px;
+      color: #666;
+      background-color: #f9f9f9;
+    }
+
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
@@ -230,7 +238,7 @@
       .posts-grid {
         grid-template-columns: 1fr;
       }
-      
+
       .post-image-container {
         height: 250px;
       }
@@ -241,7 +249,7 @@
         padding: 0.5rem 1rem;
         font-size: 0.9rem;
       }
-      
+
       .header h1 {
         font-size: 1.5rem;
       }
@@ -249,40 +257,30 @@
   </style>
 </head>
 <body>
-  <header class="header" role="banner">
+  <header class="header">
     <div class="images">
-      <a style="list-style: none;" href="https://aboelfooz.github.io/profaile/"><img src="photo_2025-06-29_20-43-04.jpg" alt=""></a>
-      <a style="list-style: none;" href="https://whatsapp.com/channel/0029Vb3EmZtHVvTZ5uysEn0J"><img src="photo_2025-07-07_12-04-41.jpg" alt=""></a>
-      
-      
-
+      <a href="https://aboelfooz.github.io/profaile/"><img src="photo_2025-06-29_20-43-04.jpg" alt=""></a>
+      <a href="https://whatsapp.com/channel/0029Vb3EmZtHVvTZ5uysEn0J"><img src="photo_2025-07-07_12-04-41.jpg" alt=""></a>
     </div>
-    
     <br><h1>معهد جيل الأمة</h1>
   </header>
 
-  <main role="main">
+  <main>
     <div class="filter-bar">
-      <button class="filter-btn active" data-filter="الكل" aria-label="عرض جميع المنشورات">
-        <i class="fas fa-layer-group"></i> الكل
-      </button>
-      <button class="filter-btn" data-filter="حديث" aria-label="تصفية بالأحاديث">
-        <i class="fas fa-book-quran"></i> الأحاديث
-      </button>
-      <button class="filter-btn" data-filter="فتوى" aria-label="تصفية بالفتاوى">
-        <i class="fas fa-scale-balanced"></i> الفتاوى
-      </button>
-      <button class="filter-btn" data-filter="منشور" aria-label="تصفية بالمنشورات">
-        <i class="fas fa-newspaper"></i> المنشورات
-      </button>
+      <button class="filter-btn active" data-filter="الكل"><i class="fas fa-layer-group"></i> الكل</button>
+      <button class="filter-btn" data-filter="حديث"><i class="fas fa-book-quran"></i> الأحاديث</button>
+      <button class="filter-btn" data-filter="فتوى"><i class="fas fa-scale-balanced"></i> الفتاوى</button>
+      <button class="filter-btn" data-filter="منشور"><i class="fas fa-newspaper"></i> المنشورات</button>
     </div>
 
     <div class="posts-grid" id="postsContainer">
-      <div class="loading">
-        <div class="spinner" aria-hidden="true"></div>
-      </div>
+      <div class="loading"><div class="spinner"></div></div>
     </div>
   </main>
+
+  <footer>
+    تم التصميم والتطوير بواسطة <strong style="color: #00796b;">GM-MOHAMED</strong>
+  </footer>
 
   <script>
     const postsUrl = "posts.json";
@@ -299,16 +297,10 @@
 
     function formatDate(dateString) {
       if (!dateString) return "غير معروف";
-      
       try {
         const date = new Date(dateString);
         if (isNaN(date)) return dateString;
-        
-        return date.toLocaleDateString('ar-EG', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        });
+        return date.toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
       } catch {
         return dateString;
       }
@@ -316,7 +308,7 @@
 
     async function loadPosts() {
       const container = document.getElementById("postsContainer");
-      
+
       if (!navigator.onLine) {
         container.innerHTML = `
           <div class="error-state">
@@ -330,14 +322,8 @@
 
       try {
         const res = await fetch(postsUrl);
-        
-        if (!res.ok) {
-          throw new Error('فشل في جلب البيانات');
-        }
-        
+        if (!res.ok) throw new Error('فشل في جلب البيانات');
         const posts = await res.json();
-
-        // ترتيب المنشورات من الأحدث إلى الأقدم
         posts.sort((a, b) => new Date(b.التاريخ) - new Date(a.التاريخ));
         displayPosts(posts);
         setupFilters(posts);
@@ -355,7 +341,6 @@
 
     function displayPosts(posts, filter = "الكل") {
       const container = document.getElementById("postsContainer");
-
       const filtered = filter === "الكل" ? posts : posts.filter(p => p.النوع === filter);
 
       if (filtered.length === 0) {
@@ -374,16 +359,7 @@
         const content = escapeHtml(post.المحتوى || "لا يوجد محتوى").replace(/\n/g, "<br>");
         const date = formatDate(post.التاريخ);
         const imageUrl = post.الصورة ? `${imagesBaseUrl}${post.الصورة.split('/').pop()}` : null;
-
-        const imageHtml = imageUrl ? 
-          `<div class="post-image-container">
-            <img src="${imageUrl}" alt="${title}" class="post-image" loading="lazy">
-          </div>` :
-          `<div class="post-image-container no-image">
-            <span> لا توجد صورة لهذا المنشور</span>
-          </div>`;
-
-        // تحديد أيقونة حسب نوع المنشور
+        const imageHtml = imageUrl ? `<div class="post-image-container"><img src="${imageUrl}" alt="${title}" class="post-image" loading="lazy"></div>` : `<div class="post-image-container no-image"><span> لا توجد صورة لهذا المنشور</span></div>`;
         let typeIcon = 'fa-file-alt';
         if (type.includes('حديث')) typeIcon = 'fa-book-quran';
         else if (type.includes('فتوى')) typeIcon = 'fa-scale-balanced';
@@ -416,8 +392,6 @@
     }
 
     document.addEventListener("DOMContentLoaded", loadPosts);
-    
-    // إعادة تحميل عند عودة الاتصال
     window.addEventListener('online', loadPosts);
   </script>
 </body>
