@@ -31,10 +31,26 @@
     .header {
       background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       color: white;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
       padding: 2rem 1rem;
       text-align: center;
       margin-bottom: 2rem;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .images{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      
+    }
+
+    .header img{
+      border-radius: 8px;
+      margin-left: 3px;
+      width: 60px;
+      height: 60px;
     }
 
     .header h1 {
@@ -234,7 +250,15 @@
 </head>
 <body>
   <header class="header" role="banner">
-    <h1>معهد جيل الأمة</h1>
+    <div class="images">
+      <a style="list-style: none;" href="https://aboelfooz.github.io/profaile/"><img src="photo_2025-06-29_20-43-04.jpg" alt=""></a>
+      <a style="list-style: none;" href="https://whatsapp.com/channel/0029Vb3EmZtHVvTZ5uysEn0J"><img src="photo_2025-07-07_12-04-41.jpg" alt=""></a>
+      
+      
+
+    </div>
+    
+    <br><h1>معهد جيل الأمة</h1>
   </header>
 
   <main role="main">
