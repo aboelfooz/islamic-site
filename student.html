@@ -220,53 +220,69 @@
             color: var(--accent-color);
         }
 
-        /* جدول الاختبارات الجديد */
-        .tests-table {
-            width: 100%;
-            border-collapse: collapse;
+        .tests-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .test-card {
             background-color: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            transition: all 0.3s ease;
+            border-top: 3px solid rgba(44, 120, 108, 0.2);
+            position: relative;
             overflow: hidden;
         }
 
-        .tests-table thead {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        .test-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .test-card.latest {
+            border-top: 3px solid var(--accent-color);
+            background-color: rgba(248, 180, 0, 0.05);
+        }
+
+        .test-card.latest::before {
+            content: 'الأحدث';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--accent-color);
             color: white;
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
         }
 
-        .tests-table th {
-            padding: 15px;
-            text-align: right;
+        .test-name {
             font-weight: 600;
-        }
-
-        .tests-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .tests-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .tests-table tr:hover {
-            background-color: rgba(44, 120, 108, 0.03);
-        }
-
-        .test-name-cell {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: var(--secondary-color);
             display: flex;
             align-items: center;
         }
 
-        .test-name-cell i {
-            margin-left: 10px;
+        .test-name i {
+            margin-left: 8px;
             color: var(--primary-color);
         }
 
-        .test-result-cell {
+        .test-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .test-result {
             font-weight: 700;
-            text-align: center;
+            font-size: 16px;
         }
 
         .high-score {
@@ -281,35 +297,35 @@
             color: var(--danger);
         }
 
-        .test-date-cell {
+        .test-date {
+            color: #666;
+            font-size: 14px;
             display: flex;
             align-items: center;
-            justify-content: flex-end;
         }
 
-        .test-date-cell i {
+        .test-date i {
             margin-left: 5px;
-        }
-
-        .test-evaluation-cell {
-            text-align: center;
-            font-style: italic;
-        }
-
-        .progress-cell {
-            min-width: 120px;
         }
 
         .mini-progress {
             height: 8px;
             border-radius: 4px;
             background-color: rgba(0,0,0,0.05);
+            margin: 10px 0;
             overflow: hidden;
         }
 
         .mini-progress-bar {
             height: 100%;
             border-radius: 4px;
+        }
+
+        .test-evaluation {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
         }
 
         .no-tests {
@@ -319,30 +335,13 @@
             background-color: rgba(0,0,0,0.02);
             border-radius: 8px;
             font-size: 16px;
+            grid-column: 1 / -1;
         }
 
         .no-tests i {
             font-size: 24px;
             margin-bottom: 10px;
             color: #ccc;
-        }
-
-        .latest-row {
-            background-color: rgba(248, 180, 0, 0.05);
-            position: relative;
-        }
-
-        .latest-row::before {
-            content: 'الأحدث';
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            background-color: var(--accent-color);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 3px;
-            font-size: 12px;
-            font-weight: bold;
         }
 
         .logout-btn {
@@ -393,9 +392,8 @@
                 margin-top: 10px;
             }
             
-            .tests-table {
-                display: block;
-                overflow-x: auto;
+            .tests-container {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -430,7 +428,7 @@
                     <i class="fas fa-book-open"></i>
                     اختبارات الدروس
                 </h3>
-                <div id="lessonTests"></div>
+                <div class="tests-container" id="lessonTests"></div>
             </div>
             
             <div class="section">
@@ -438,7 +436,7 @@
                     <i class="fas fa-microphone-alt"></i>
                     اختبارات التجويد
                 </h3>
-                <div id="tajweedTests"></div>
+                <div class="tests-container" id="tajweedTests"></div>
             </div>
             
             <div class="section">
@@ -446,7 +444,7 @@
                     <i class="fas fa-quran"></i>
                     اختبارات الحفظ
                 </h3>
-                <div id="memorizationTests"></div>
+                <div class="tests-container" id="memorizationTests"></div>
             </div>
         </div>
         
@@ -487,7 +485,7 @@
             // عرض اختبارات الحفظ (بالمعايير المحددة)
             displayTests(studentData.memorizationTests, 'memorizationTests', 'testName', 'اختبار حفظ', 'quran', 'memorization');
             
-            // دالة لعرض الاختبارات بشكل جدول منظم
+            // دالة لعرض الاختبارات بشكل جميل مع معايير مختلفة لكل نوع
             function displayTests(tests, containerId, nameField, defaultName, iconName, testType) {
                 const container = document.getElementById(containerId);
                 
@@ -504,30 +502,10 @@
                 // ترتيب الاختبارات من الأحدث إلى الأقدم
                 tests.sort((a, b) => new Date(b.date) - new Date(a.date));
                 
-                // إنشاء جدول الاختبارات
-                const table = document.createElement('table');
-                table.className = 'tests-table';
-                
-                // رأس الجدول
-                const thead = document.createElement('thead');
-                thead.innerHTML = `
-                    <tr>
-                        <th>اسم الاختبار</th>
-                        <th>النتيجة</th>
-                        <th>التقييم</th>
-                        <th>التقدم</th>
-                        <th>التاريخ</th>
-                    </tr>
-                `;
-                table.appendChild(thead);
-                
-                // جسم الجدول
-                const tbody = document.createElement('tbody');
-                
                 // عرض الاختبارات مع تمييز الأحدث
                 tests.forEach((test, index) => {
-                    const testRow = document.createElement('tr');
-                    if (index === 0) testRow.className = 'latest-row';
+                    const testCard = document.createElement('div');
+                    testCard.className = 'test-card' + (index === 0 ? ' latest' : '');
                     
                     const testName = test[nameField] || defaultName;
                     const result = test.result || 0;
@@ -575,33 +553,26 @@
                         }
                     }
                     
-                    testRow.innerHTML = `
-                        <td>
-                            <div class="test-name-cell">
-                                <i class="fas fa-${iconName}"></i>
-                                ${testName}
-                            </div>
-                        </td>
-                        <td class="test-result-cell ${resultClass}">${result}%</td>
-                        <td class="test-evaluation-cell">${evaluation}</td>
-                        <td class="progress-cell">
-                            <div class="mini-progress">
-                                <div class="mini-progress-bar" style="width: ${result}%; background-color: ${getProgressColor(result, testType)}"></div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="test-date-cell">
+                    testCard.innerHTML = `
+                        <div class="test-name">
+                            <i class="fas fa-${iconName}"></i>
+                            ${testName}
+                        </div>
+                        <div class="test-details">
+                            <div class="test-result ${resultClass}">${result}%</div>
+                            <div class="test-date">
                                 <i class="far fa-calendar-alt"></i>
                                 ${date}
                             </div>
-                        </td>
+                        </div>
+                        <div class="mini-progress">
+                            <div class="mini-progress-bar" style="width: ${result}%; background-color: ${getProgressColor(result, testType)}"></div>
+                        </div>
+                        <div class="test-evaluation">التقييم: <strong>${evaluation}</strong></div>
                     `;
                     
-                    tbody.appendChild(testRow);
+                    container.appendChild(testCard);
                 });
-                
-                table.appendChild(tbody);
-                container.appendChild(table);
             }
             
             // دالة للحصول على لون شريط التقدم حسب النتيجة ونوع الاختبار
@@ -624,3 +595,4 @@
     </script>
 </body>
 </html>
+
