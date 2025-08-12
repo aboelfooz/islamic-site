@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>لوحة التحكم - إدارة الطلاب</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #2c786c;
+      --danger-color: #f44336;
+      --warning-color: #ff9800;
+      --info-color: #2196F3;
+      --light-bg: #f8f9fa;
+      --dark-text: #333;
+      --border-color: #ddd;
+    }
+    
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #f5f5f5;
+      padding: 20px;
+      color: var(--dark-text);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    input[type="text"],
+    input[type="password"],
+    select,
+    textarea,
+    input[type="file"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 16px;
+      transition: border 0.3s;
+    }
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    select:focus,
+    textarea:focus,
+    input[type="file"]:focus {
+      border-color: var(--primary-color);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+    }
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    .btn {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-primary {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    .btn-danger {
+      background-color: var(--danger-color);
+      color: white;
+    }
+    .btn-warning {
+      background-color: var(--warning-color);
+      color: white;
+    }
+    .btn-info {
+      background-color: var(--info-color);
+      color: white;
+    }
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--dark-text);
+    }
+    .btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+    .btn:active {
+      transform: translateY(0);
+    }
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 14px;
+    }
+    .message {
+      margin: 15px 0;
+      padding: 12px 15px;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+    .success {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+      border-left: 4px solid #2e7d32;
+    }
+    .error {
+      background-color: #ffebee;
+      color: #c62828;
+      border-left: 4px solid #c62828;
+    }
+    .warning {
+      background-color: #fff8e1;
+      color: #f57f17;
+      border-left: 4px solid #f57f17;
+    }
+    .student-item {
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: var(--light-bg);
+      border-radius: 8px;
+      position: relative;
+      border: 1px solid var(--border-color);
+      transition: all 0.3s;
+    }
+    .student-item:hover {
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    .student-item h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+    .student-item p {
+      margin-bottom: 10px;
+      color: #555;
+      line-height: 1.6;
+    }
+    .student-item small {
+      color: #777;
+      font-size: 14px;
+    }
+    .student-actions {
+      position: absolute;
+      left: 15px;
+      top: 15px;
+      display: flex;
+      gap: 8px;
+    }
+    .student-code {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-left: 10px;
+      background-color: #e3f2fd;
+      color: #1565c0;
+    }
+    .tabs {
+      display: flex;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .tab {
+      padding: 10px 20px;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s;
+    }
+    .tab.active {
+      border-bottom-color: var(--primary-color);
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .flex-row {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    .flex-row > * {
+      flex: 1;
+    }
+    .search-box {
+      margin-bottom: 20px;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: #777;
+    }
+    .empty-state i {
+      font-size: 50px;
+      margin-bottom: 15px;
+      color: #ddd;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background-color: white;
+      padding: 25px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .modal-title {
+      margin: 0;
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #777;
+    }
+    .modal-footer {
+      margin-top: 20px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    .preview-image {
+      max-width: 100%;
+      max-height: 200px;
+      margin-top: 10px;
+      border-radius: 4px;
+      display: none;
+    }
+    .student-image {
+      max-width: 100%;
+      max-height: 300px;
+      margin: 10px 0;
+      border-radius: 4px;
+    }
+    .progress-container {
+      margin-bottom: 15px;
+    }
+    .progress-title {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+    .progress-bar {
+      height: 8px;
+      background-color: #eee;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background-color: var(--primary-color);
+      border-radius: 4px;
+    }
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+      .flex-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>لوحة إدارة الطلاب</h1>
+    
+    <div class="tabs">
+      <div class="tab active" data-tab="settings">الإعدادات</div>
+      <div class="tab" data-tab="add-student">إضافة طالب</div>
+      <div class="tab" data-tab="students-list">قائمة الطلاب</div>
+    </div>
+    
+    <div class="tab-content active" id="settings">
+      <div class="form-group">
+        <label for="token">GitHub Token:</label>
+        <input type="password" id="token" required>
+        <small class="text-muted">يستخدم للوصول إلى مستودع GitHub الخاص بك</small>
+      </div>
+      
+      <div class="flex-row">
+        <div class="form-group">
+          <label for="username">اسم المستخدم:</label>
+          <input type="text" id="username" value="aboelfooz" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="repo">اسم المستودع:</label>
+          <input type="text" id="repo" value="islamic-site" required>
+        </div>
+      </div>
+      
+      <button id="saveSettingsBtn" class="btn btn-primary">حفظ الإعدادات</button>
+      <div id="settingsMessage" class="message"></div>
+    </div>
+    
+    <div class="tab-content" id="add-student">
+      <div class="form-group">
+        <label for="studentName">اسم الطالب:</label>
+        <input type="text" id="studentName" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="studentLevel">المستوى:</label>
+        <select id="studentLevel">
+          <option value="مبتدئ">مبتدئ</option>
+          <option value="متوسط">متوسط</option>
+          <option value="متقدم">متقدم</option>
+          <option value="متميز">متميز</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="studentImage">صورة الطالب (اختياري):</label>
+        <input type="file" id="studentImage" accept="image/*">
+        <img id="imagePreview" class="preview-image" alt="معاينة الصورة">
+      </div>
+      
+      <div class="form-group">
+        <label for="studentCode">كود الدخول (سيتم إنشاؤه تلقائياً):</label>
+        <input type="text" id="studentCode" readonly>
+        <button id="generateCodeBtn" class="btn btn-outline btn-sm">إنشاء كود جديد</button>
+      </div>
+      
+      <h3>معلومات التقدم</h3>
+      
+      <div class="flex-row">
+        <div class="form-group">
+          <label for="memorizationProgress">إنجاز الحفظ %:</label>
+          <input type="number" id="memorizationProgress" min="0" max="100" value="0">
+        </div>
+        
+        <div class="form-group">
+          <label for="testsProgress">إنجاز الاختبارات %:</label>
+          <input type="number" id="testsProgress" min="0" max="100" value="0">
+        </div>
+      </div>
+      
+      <h3>إحصائيات الطالب</h3>
+      
+      <div class="flex-row">
+        <div class="form-group">
+          <label for="memorizedParts">الأجزاء المحفوظة:</label>
+          <input type="number" id="memorizedParts" min="0" value="0">
+        </div>
+        
+        <div class="form-group">
+          <label for="completedLessons">الدروس المكتملة:</label>
+          <input type="number" id="completedLessons" min="0" value="0">
+        </div>
+      </div>
+      
+      <div class="flex-row">
+        <div class="form-group">
+          <label for="streakDays">الأيام المتتالية:</label>
+          <input type="number" id="streakDays" min="0" value="0">
+        </div>
+        
+        <div class="form-group">
+          <label for="passedTests">الاختبارات الناجحة:</label>
+          <input type="number" id="passedTests" min="0" value="0">
+        </div>
+      </div>
+      
+      <div class="flex-row">
+        <button id="addStudentBtn" class="btn btn-primary">إضافة الطالب</button>
+        <button id="clearFormBtn" class="btn btn-outline">مسح النموذج</button>
+      </div>
+      <div id="addStudentMessage" class="message"></div>
+    </div>
+    
+    <div class="tab-content" id="students-list">
+      <div class="flex-row">
+        <div class="form-group search-box">
+          <input type="text" id="searchInput" placeholder="ابحث في الطلاب...">
+        </div>
+        <button id="refreshBtn" class="btn btn-info">تحديث القائمة</button>
+      </div>
+      
+      <div id="studentsList"></div>
+    </div>
+  </div>
+
+  <!-- Modal for Edit Student -->
+  <div class="modal" id="editModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">تعديل بيانات الطالب</h3>
+        <button class="close-btn" id="closeEditModal">&times;</button>
+      </div>
+      <div class="form-group">
+        <label for="editStudentName">اسم الطالب:</label>
+        <input type="text" id="editStudentName" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="editStudentLevel">المستوى:</label>
+        <select id="editStudentLevel">
+          <option value="مبتدئ">مبتدئ</option>
+          <option value="متوسط">متوسط</option>
+          <option value="متقدم">متقدم</option>
+          <option value="متميز">متميز</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="editStudentImage">تغيير الصورة (اختياري):</label>
+        <input type="file" id="editStudentImage" accept="image/*">
+        <img id="editImagePreview" class="preview-image" alt="معاينة الصورة">
+      </div>
+      
+      <div class="form-group">
+        <label for="editStudentCode">كود الدخول:</label>
+        <input type="text" id="editStudentCode" readonly>
+      </div>
+      
+      <h3>معلومات التقدم</h3>
+      
+      <div class="flex-row">
+        <div class="form-group">
+          <label for="editMemorizationProgress">إنجاز الحفظ %:</label>
+          <input type="number" id="editMemorizationProgress" min="0" max="100">
+        </div>
+        
+        <div class="form-group">
+          <label for="editTestsProgress">إنجاز الاختبارات %:</label>
+          <input type="number" id="editTestsProgress" min="0" max="100">
+        </div>
+      </div>
+      
+      <h3>إحصائيات الطالب</h3>
+      
+      <div class="flex-row">
+        <div class="form-group">
+          <label for="editMemorizedParts">الأجزاء المحفوظة:</label>
+          <input type="number" id="editMemorizedParts" min="0">
+        </div>
+        
+        <div class="form-group">
+          <label for="editCompletedLessons">الدروس المكتملة:</label>
+          <input type="number" id="editCompletedLessons" min="0">
+        </div>
+      </div>
+      
+      <div class="flex-row">
+        <div class="form-group">
+          <label for="editStreakDays">الأيام المتتالية:</label>
+          <input type="number" id="editStreakDays" min="0">
+        </div>
+        
+        <div class="form-group">
+          <label for="editPassedTests">الاختبارات الناجحة:</label>
+          <input type="number" id="editPassedTests" min="0">
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button id="cancelEditBtn" class="btn btn-outline">إلغاء</button>
+        <button id="saveEditBtn" class="btn btn-primary">حفظ التعديلات</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Elements
+      const tokenInput = document.getElementById('token');
+      const repoInput = document.getElementById('repo');
+      const usernameInput = document.getElementById('username');
+      const studentNameInput = document.getElementById('studentName');
+      const studentLevelSelect = document.getElementById('studentLevel');
+      const studentImageInput = document.getElementById('studentImage');
+      const studentCodeInput = document.getElementById('studentCode');
+      const memorizationProgressInput = document.getElementById('memorizationProgress');
+      const testsProgressInput = document.getElementById('testsProgress');
+      const memorizedPartsInput = document.getElementById('memorizedParts');
+      const completedLessonsInput = document.getElementById('completedLessons');
+      const streakDaysInput = document.getElementById('streakDays');
+      const passedTestsInput = document.getElementById('passedTests');
+      const addStudentBtn = document.getElementById('addStudentBtn');
+      const clearFormBtn = document.getElementById('clearFormBtn');
+      const refreshBtn = document.getElementById('refreshBtn');
+      const generateCodeBtn = document.getElementById('generateCodeBtn');
+      const saveSettingsBtn = document.getElementById('saveSettingsBtn');
+      const searchInput = document.getElementById('searchInput');
+      const settingsMessageDiv = document.getElementById('settingsMessage');
+      const addStudentMessageDiv = document.getElementById('addStudentMessage');
+      const studentsListDiv = document.getElementById('studentsList');
+      
+      // Modal elements
+      const editModal = document.getElementById('editModal');
+      const closeEditModalBtn = document.getElementById('closeEditModal');
+      const cancelEditBtn = document.getElementById('cancelEditBtn');
+      const editStudentNameInput = document.getElementById('editStudentName');
+      const editStudentLevelSelect = document.getElementById('editStudentLevel');
+      const editStudentImageInput = document.getElementById('editStudentImage');
+      const editStudentCodeInput = document.getElementById('editStudentCode');
+      const editMemorizationProgressInput = document.getElementById('editMemorizationProgress');
+      const editTestsProgressInput = document.getElementById('editTestsProgress');
+      const editMemorizedPartsInput = document.getElementById('editMemorizedParts');
+      const editCompletedLessonsInput = document.getElementById('editCompletedLessons');
+      const editStreakDaysInput = document.getElementById('editStreakDays');
+      const editPassedTestsInput = document.getElementById('editPassedTests');
+      const saveEditBtn = document.getElementById('saveEditBtn');
+      const imagePreview = document.getElementById('imagePreview');
+      const editImagePreview = document.getElementById('editImagePreview');
+      
+      // Tab functionality
+      const tabs = document.querySelectorAll('.tab');
+      const tabContents = document.querySelectorAll('.tab-content');
+      
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const tabId = tab.getAttribute('data-tab');
+          
+          // Update active tab
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          
+          // Update active content
+          tabContents.forEach(content => content.classList.remove('active'));
+          document.getElementById(tabId).classList.add('active');
+          
+          // Load students if going to students list
+          if (tabId === 'students-list') {
+            loadStudents();
+          }
+        });
+      });
+      
+      // State
+      let currentStudents = [];
+      let fileSha = null;
+      let currentEditIndex = null;
+      
+      // Load saved settings from localStorage
+      function loadSettings() {
+        const savedToken = localStorage.getItem('githubToken');
+        const savedUsername = localStorage.getItem('githubUsername');
+        const savedRepo = localStorage.getItem('githubRepo');
+        
+        if (savedToken) tokenInput.value = savedToken;
+        if (savedUsername) usernameInput.value = savedUsername;
+        if (savedRepo) repoInput.value = savedRepo;
+      }
+      
+      // Save settings to localStorage
+      function saveSettings() {
+        const token = tokenInput.value.trim();
+        const username = usernameInput.value.trim();
+        const repo = repoInput.value.trim();
+        
+        localStorage.setItem('githubToken', token);
+        localStorage.setItem('githubUsername', username);
+        localStorage.setItem('githubRepo', repo);
+        
+        showMessage(settingsMessageDiv, 'تم حفظ الإعدادات بنجاح', 'success');
+      }
+      
+      // Generate random 6-digit code
+      function generateCode() {
+        return Math.floor(100000 + Math.random() * 900000).toString();
+      }
+      
+      // Load students from GitHub
+      async function loadStudents() {
+        const token = tokenInput.value.trim();
+        const repo = repoInput.value.trim();
+        const username = usernameInput.value.trim();
+        
+        if (!token || !repo || !username) {
+          showMessage(addStudentMessageDiv, 'الرجاء ملء جميع الحقول في قسم الإعدادات', 'error');
+          return;
+        }
+        
+        try {
+          const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/students.json`;
+          
+          const response = await fetch(apiUrl, {
+            headers: {
+              'Authorization': `token ${token}`,
+              'Accept': 'application/vnd.github.v3+json'
+            }
+          });
+          
+          if (response.status === 404) {
+            // File doesn't exist, we'll create it later
+            currentStudents = [];
+            fileSha = null;
+            renderStudentsList();
+            showMessage(addStudentMessageDiv, 'لم يتم العثور على ملف الطلاب. سيتم إنشاء ملف جديد عند إضافة أول طالب.', 'warning');
+            return;
+          }
+          
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || `خطأ في جلب البيانات: ${response.status}`);
+          }
+          
+          const data = await response.json();
+          fileSha = data.sha;
+          
+          // Decode content with proper Arabic support
+          const decodedContent = decodeURIComponent(escape(atob(data.content)));
+          currentStudents = JSON.parse(decodedContent);
+          
+          renderStudentsList();
+          showMessage(addStudentMessageDiv, 'تم تحميل بيانات الطلاب بنجاح', 'success');
+          
+        } catch (error) {
+          showMessage(addStudentMessageDiv, `حدث خطأ: ${error.message}`, 'error');
+          console.error(error);
+        }
+      }
+      
+      // Render students list with search
+      function renderStudentsList(searchTerm = '') {
+        studentsListDiv.innerHTML = '';
+        
+        let filteredStudents = currentStudents;
+        if (searchTerm) {
+          const term = searchTerm.toLowerCase();
+          filteredStudents = currentStudents.filter(student => 
+            (student.name && student.name.toLowerCase().includes(term)) ||
+            (student.code && student.code.includes(term)) ||
+            (student.level && student.level.toLowerCase().includes(term))
+          );
+        }
+        
+        if (filteredStudents.length === 0) {
+          const emptyState = document.createElement('div');
+          emptyState.className = 'empty-state';
+          emptyState.innerHTML = `
+            <div>📭</div>
+            <h3>لا توجد بيانات طلاب متاحة</h3>
+            <p>${searchTerm ? 'لم يتم العثور على طلاب يطابقون بحثك' : 'لم يتم إضافة أي طلاب بعد'}</p>
+          `;
+          studentsListDiv.appendChild(emptyState);
+          return;
+        }
+        
+        filteredStudents.forEach((student, index) => {
+          const studentItem = document.createElement('div');
+          studentItem.className = 'student-item';
+          
+          // Prepare progress bars
+          const memorizationProgress = student.progress?.memorization || 0;
+          const testsProgress = student.progress?.tests || 0;
+          
+          studentItem.innerHTML = `
+            <div class="student-actions">
+              <button class="btn btn-warning btn-sm edit-btn" data-index="${index}">تعديل</button>
+              <button class="btn btn-danger btn-sm delete-btn" data-index="${index}">حذف</button>
+            </div>
+            <h3>
+              ${student.name || 'بدون اسم'}
+              <span class="student-code">${student.code || 'بدون كود'}</span>
+            </h3>
+            <p><strong>المستوى:</strong> ${student.level || 'غير محدد'}</p>
+            
+            <div class="progress-container">
+              <div class="progress-title">
+                <span>إنجاز الحفظ</span>
+                <span>${memorizationProgress}%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: ${memorizationProgress}%"></div>
+              </div>
+            </div>
+            
+            <div class="progress-container">
+              <div class="progress-title">
+                <span>إنجاز الاختبارات</span>
+                <span>${testsProgress}%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: ${testsProgress}%"></div>
+              </div>
+            </div>
+            
+            <small><strong>الأجزاء المحفوظة:</strong> ${student.stats?.memorizedParts || 0} | 
+            <strong>الدروس المكتملة:</strong> ${student.stats?.completedLessons || 0} | 
+            <strong>الأيام المتتالية:</strong> ${student.stats?.streakDays || 0}</small>
+          `;
+          
+          studentsListDiv.appendChild(studentItem);
+        });
+        
+        // Add event handlers for delete and edit buttons
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            deleteStudent(index);
+          });
+        });
+        
+        document.querySelectorAll('.edit-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            openEditModal(index);
+          });
+        });
+      }
+      
+      // Open edit modal
+      function openEditModal(index) {
+        if (index < 0 || index >= currentStudents.length) return;
+        
+        const student = currentStudents[index];
+        currentEditIndex = index;
+        
+        editStudentNameInput.value = student.name || '';
+        editStudentLevelSelect.value = student.level || 'مبتدئ';
+        editStudentCodeInput.value = student.code || '';
+        
+        // Set progress values
+        editMemorizationProgressInput.value = student.progress?.memorization || 0;
+        editTestsProgressInput.value = student.progress?.tests || 0;
+        
+        // Set stats values
+        editMemorizedPartsInput.value = student.stats?.memorizedParts || 0;
+        editCompletedLessonsInput.value = student.stats?.completedLessons || 0;
+        editStreakDaysInput.value = student.stats?.streakDays || 0;
+        editPassedTestsInput.value = student.stats?.passedTests || 0;
+        
+        // Display current image if exists
+        if (student.image) {
+          editImagePreview.src = student.image;
+          editImagePreview.style.display = 'block';
+        } else {
+          editImagePreview.style.display = 'none';
+        }
+        
+        editModal.style.display = 'flex';
+      }
+      
+      // Close edit modal
+      function closeEditModal() {
+        editModal.style.display = 'none';
+        currentEditIndex = null;
+        editImagePreview.style.display = 'none';
+        editStudentImageInput.value = '';
+      }
+      
+      // Save edited student
+      async function saveEditedStudent() {
+        if (currentEditIndex === null) return;
+        
+        const name = editStudentNameInput.value.trim();
+        const level = editStudentLevelSelect.value;
+        const code = editStudentCodeInput.value.trim();
+        const imageFile = editStudentImageInput.files[0];
+        
+        if (!name || !code) {
+          alert('الرجاء إدخال اسم الطالب وكود الدخول');
+          return;
+        }
+        
+        // Update basic info
+        currentStudents[currentEditIndex] = {
+          ...currentStudents[currentEditIndex],
+          name: name,
+          level: level,
+          code: code,
+          progress: {
+            memorization: parseInt(editMemorizationProgressInput.value) || 0,
+            tests: parseInt(editTestsProgressInput.value) || 0
+          },
+          stats: {
+            memorizedParts: parseInt(editMemorizedPartsInput.value) || 0,
+            completedLessons: parseInt(editCompletedLessonsInput.value) || 0,
+            streakDays: parseInt(editStreakDaysInput.value) || 0,
+            passedTests: parseInt(editPassedTestsInput.value) || 0
+          }
+        };
+        
+        // If new image uploaded, upload it and save the URL
+        if (imageFile) {
+          try {
+            const imageUrl = await uploadImage(imageFile);
+            currentStudents[currentEditIndex].image = imageUrl;
+          } catch (error) {
+            showMessage(addStudentMessageDiv, `حدث خطأ أثناء تحميل الصورة: ${error.message}`, 'error');
+            return;
+          }
+        }
+        
+        await saveStudents();
+        closeEditModal();
+      }
+      
+      // Delete student
+      async function deleteStudent(index) {
+        if (index < 0 || index >= currentStudents.length) return;
+        
+        if (confirm('هل أنت متأكد من حذف هذا الطالب؟ لا يمكن التراجع عن هذا الإجراء.')) {
+          currentStudents.splice(index, 1);
+          await saveStudents();
+        }
+      }
+      
+      // Upload image to GitHub
+      async function uploadImage(file) {
+        const token = tokenInput.value.trim();
+        const repo = repoInput.value.trim();
+        const username = usernameInput.value.trim();
+        
+        if (!token || !repo || !username) {
+          throw new Error('الرجاء ملء جميع الحقول في قسم الإعدادات');
+        }
+        
+        // Create unique filename
+        const timestamp = new Date().getTime();
+        const extension = file.name.split('.').pop();
+        const filename = `student-${timestamp}.${extension}`;
+        const path = `images/${filename}`;
+        
+        // Read file as base64
+        const reader = new FileReader();
+        const fileContent = await new Promise((resolve, reject) => {
+          reader.onload = () => resolve(reader.result.split(',')[1]);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+        
+        const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
+        
+        const response = await fetch(apiUrl, {
+          method: "PUT",
+          headers: {
+            "Authorization": `token ${token}`,
+            "Content-Type": "application/json",
+            "Accept": "application/vnd.github.v3+json"
+          },
+          body: JSON.stringify({
+            message: "تحميل صورة الطالب",
+            content: fileContent
+          })
+        });
+        
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || `خطأ في تحميل الصورة: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        return data.content.download_url;
+      }
+      
+      // Save students to GitHub
+      async function saveStudents() {
+        const token = tokenInput.value.trim();
+        const repo = repoInput.value.trim();
+        const username = usernameInput.value.trim();
+        
+        if (!token || !repo || !username) {
+          showMessage(addStudentMessageDiv, 'الرجاء ملء جميع الحقول في قسم الإعدادات', 'error');
+          return;
+        }
+        
+        try {
+          const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/students.json`;
+          
+          // Convert data to JSON with Arabic support
+          const studentsJSON = JSON.stringify(currentStudents, null, 2);
+          
+          // Reliable way to convert to Base64 with Unicode support
+          const utf8Bytes = new TextEncoder().encode(studentsJSON);
+          let binaryString = '';
+          for (let i = 0; i < utf8Bytes.length; i++) {
+            binaryString += String.fromCharCode(utf8Bytes[i]);
+          }
+          const content = btoa(binaryString);
+          
+          // Prepare request data
+          const requestData = {
+            message: "تحديث بيانات الطلاب",
+            content: content,
+            sha: fileSha || undefined // Don't send sha if null
+          };
+          
+          // Remove sha field if null
+          if (!fileSha) {
+            delete requestData.sha;
+          }
+          
+          const response = await fetch(apiUrl, {
+            method: "PUT",
+            headers: {
+              "Authorization": `token ${token}`,
+              "Content-Type": "application/json; charset=utf-8",
+              "Accept": "application/vnd.github.v3+json"
+            },
+            body: JSON.stringify(requestData)
+          });
+          
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || `خطأ في الحفظ: ${response.status}`);
+          }
+          
+          const data = await response.json();
+          fileSha = data.content.sha;
+          
+          showMessage(addStudentMessageDiv, 'تم حفظ بيانات الطلاب بنجاح', 'success');
+          renderStudentsList(searchInput.value.trim());
+          
+        } catch (error) {
+          showMessage(addStudentMessageDiv, `حدث خطأ أثناء الحفظ: ${error.message}`, 'error');
+          console.error(error);
+        }
+      }
+      
+      // Show message
+      function showMessage(element, message, type) {
+        element.textContent = message;
+        element.className = 'message ' + type;
+        setTimeout(() => {
+          element.textContent = '';
+          element.className = 'message';
+        }, 5000);
+      }
+      
+      // Add new student
+      addStudentBtn.addEventListener('click', async function() {
+        const name = studentNameInput.value.trim();
+        const level = studentLevelSelect.value;
+        const code = studentCodeInput.value.trim();
+        const imageFile = studentImageInput.files[0];
+        const memorizationProgress = parseInt(memorizationProgressInput.value) || 0;
+        const testsProgress = parseInt(testsProgressInput.value) || 0;
+        const memorizedParts = parseInt(memorizedPartsInput.value) || 0;
+        const completedLessons = parseInt(completedLessonsInput.value) || 0;
+        const streakDays = parseInt(streakDaysInput.value) || 0;
+        const passedTests = parseInt(passedTestsInput.value) || 0;
+        
+        if (!name || !code) {
+          showMessage(addStudentMessageDiv, 'الرجاء إدخال اسم الطالب', 'error');
+          return;
+        }
+        
+        const newStudent = {
+          name: name,
+          level: level,
+          code: code,
+          progress: {
+            memorization: memorizationProgress,
+            tests: testsProgress
+          },
+          stats: {
+            memorizedParts: memorizedParts,
+            completedLessons: completedLessons,
+            streakDays: streakDays,
+            passedTests: passedTests
+          },
+          dateAdded: new Date().toISOString()
+        };
+        
+        // If image uploaded, upload it and add URL to student
+        if (imageFile) {
+          try {
+            const imageUrl = await uploadImage(imageFile);
+            newStudent.image = imageUrl;
+          } catch (error) {
+            showMessage(addStudentMessageDiv, `حدث خطأ أثناء تحميل الصورة: ${error.message}`, 'error');
+            return;
+          }
+        }
+        
+        currentStudents.unshift(newStudent);
+        await saveStudents();
+        
+        // Clear form
+        studentNameInput.value = '';
+        studentCodeInput.value = generateCode();
+        studentImageInput.value = '';
+        imagePreview.style.display = 'none';
+        memorizationProgressInput.value = 0;
+        testsProgressInput.value = 0;
+        memorizedPartsInput.value = 0;
+        completedLessonsInput.value = 0;
+        streakDaysInput.value = 0;
+        passedTestsInput.value = 0;
+      });
+      
+      // Clear form
+      clearFormBtn.addEventListener('click', function() {
+        studentNameInput.value = '';
+        studentCodeInput.value = generateCode();
+        studentImageInput.value = '';
+        imagePreview.style.display = 'none';
+        memorizationProgressInput.value = 0;
+        testsProgressInput.value = 0;
+        memorizedPartsInput.value = 0;
+        completedLessonsInput.value = 0;
+        streakDaysInput.value = 0;
+        passedTestsInput.value = 0;
+      });
+      
+      // Generate new code
+      generateCodeBtn.addEventListener('click', function() {
+        studentCodeInput.value = generateCode();
+      });
+      
+      // Image preview
+      studentImageInput.addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = 'block';
+          };
+          reader.readAsDataURL(this.files[0]);
+        }
+      });
+      
+      // Edit image preview
+      editStudentImageInput.addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            editImagePreview.src = e.target.result;
+            editImagePreview.style.display = 'block';
+          };
+          reader.readAsDataURL(this.files[0]);
+        }
+      });
+      
+      // Refresh students list
+      refreshBtn.addEventListener('click', loadStudents);
+      
+      // Search students
+      searchInput.addEventListener('input', function() {
+        renderStudentsList(this.value.trim());
+      });
+      
+      // Save settings
+      saveSettingsBtn.addEventListener('click', saveSettings);
+      
+      // Edit modal handlers
+      closeEditModalBtn.addEventListener('click', closeEditModal);
+      cancelEditBtn.addEventListener('click', closeEditModal);
+      saveEditBtn.addEventListener('click', saveEditedStudent);
+      
+      // Close modal when clicking outside
+      editModal.addEventListener('click', function(e) {
+        if (e.target === editModal) {
+          closeEditModal();
+        }
+      });
+      
+      // Load settings on start
+      loadSettings();
+      
+      // Generate initial code
+      studentCodeInput.value = generateCode();
+      
+      // Load students if token exists
+      if (tokenInput.value) {
+        loadStudents();
+      }
+    });
+  </script>
+</body>
+</html>
