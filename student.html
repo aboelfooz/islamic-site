@@ -16,6 +16,7 @@
             color: white;
             padding: 20px;
             text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .container {
             max-width: 1000px;
@@ -33,6 +34,8 @@
             display: flex;
             align-items: center;
             margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
         }
         .profile-image {
             width: 100px;
@@ -48,10 +51,12 @@
         .profile-name {
             margin: 0;
             color: #2c786c;
+            font-size: 24px;
         }
         .profile-level {
             margin: 5px 0 0;
             color: #666;
+            font-size: 16px;
         }
         .section {
             margin-bottom: 30px;
@@ -60,24 +65,61 @@
             color: #2c786c;
             border-bottom: 2px solid #eee;
             padding-bottom: 10px;
+            font-size: 20px;
         }
         .test-card {
             background-color: #f9f9f9;
             border-radius: 5px;
             padding: 15px;
             margin-bottom: 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .test-card:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        .test-card.latest {
+            border-right: 4px solid #ff9800;
+            background-color: #fff8e1;
         }
         .test-name {
             font-weight: bold;
             margin-bottom: 5px;
+            font-size: 18px;
+            color: #333;
         }
         .test-result {
             color: #2c786c;
             font-weight: bold;
+            margin-bottom: 5px;
         }
         .test-date {
             color: #666;
             font-size: 14px;
+        }
+        .test-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #ff9800;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .progress-container {
+            width: 100%;
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .progress-bar {
+            height: 100%;
+            border-radius: 5px;
+            background-color: #2c786c;
         }
         .logout-btn {
             display: block;
@@ -86,12 +128,30 @@
             text-align: center;
             background-color: #2c786c;
             color: white;
-            padding: 10px;
+            padding: 12px;
             border-radius: 5px;
             text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
         .logout-btn:hover {
             background-color: #004445;
+        }
+        .no-tests {
+            text-align: center;
+            color: #666;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        .level-indicator {
+            display: inline-block;
+            padding: 3px 10px;
+            background-color: #e8f5e9;
+            color: #2c786c;
+            border-radius: 15px;
+            font-size: 14px;
+            margin-right: 10px;
         }
         @media (max-width: 768px) {
             .profile-header {
@@ -105,6 +165,7 @@
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="header">
@@ -114,30 +175,36 @@
     <div class="container">
         <div class="profile-card">
             <div class="profile-header">
-                
+                <img id="studentImage" src="https://via.placeholder.com/100" alt="صورة الطالب" class="profile-image">
                 <div class="profile-info">
                     <h2 id="studentName" class="profile-name">اسم الطالب</h2>
-                    <p id="studentLevel" class="profile-level">المستوى العام: غير محدد</p>
+                    <p id="studentLevel" class="profile-level">
+                        <span class="level-indicator">المستوى العام</span>
+                        <span id="overallLevelText">غير محدد</span>
+                    </p>
+                    <div class="progress-container">
+                        <div id="overallProgress" class="progress-bar" style="width: 0%"></div>
+                    </div>
                 </div>
             </div>
             
             <div class="section">
-                <h3 class="section-title">اختبارات الأجزاء</h3>
+                <h3 class="section-title"><i class="fas fa-book-open"></i> اختبارات الأجزاء</h3>
                 <div id="partTests"></div>
             </div>
             
             <div class="section">
-                <h3 class="section-title">اختبارات الدروس</h3>
+                <h3 class="section-title"><i class="fas fa-graduation-cap"></i> اختبارات الدروس</h3>
                 <div id="lessonTests"></div>
             </div>
             
             <div class="section">
-                <h3 class="section-title">اختبارات التجويد</h3>
+                <h3 class="section-title"><i class="fas fa-microphone-alt"></i> اختبارات التجويد</h3>
                 <div id="tajweedTests"></div>
             </div>
         </div>
         
-        <a href="index.html" class="logout-btn">تسجيل الخروج</a>
+        <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
     </div>
 
     <script>
@@ -151,61 +218,60 @@
             
             // تعبئة بيانات الطالب
             document.getElementById('studentName').textContent = studentData.name;
-            document.getElementById('studentLevel').textContent = `المستوى العام: ${studentData.overallLevel || 'غير محدد'}`;
+            document.getElementById('overallLevelText').textContent = studentData.overallLevel || 'غير محدد';
             
             if (studentData.image) {
                 document.getElementById('studentImage').src = studentData.image;
             }
             
-            // عرض اختبارات الأجزاء
-            const partTestsContainer = document.getElementById('partTests');
-            if (studentData.partTests && studentData.partTests.length > 0) {
-                studentData.partTests.forEach(test => {
-                    const testCard = document.createElement('div');
-                    testCard.className = 'test-card';
-                    testCard.innerHTML = `
-                        <div class="test-name">${test.partName}</div>
-                        <div class="test-result">النتيجة: ${test.result}%</div>
-                        <div class="test-date">تاريخ الاختبار: ${test.date}</div>
-                    `;
-                    partTestsContainer.appendChild(testCard);
-                });
-            } else {
-                partTestsContainer.innerHTML = '<p>لا توجد اختبارات للأجزاء مسجلة</p>';
+            // حساب المستوى العام كنسبة مئوية
+            if (studentData.overallProgress) {
+                document.getElementById('overallProgress').style.width = studentData.overallProgress + '%';
             }
             
-            // عرض اختبارات الدروس
-            const lessonTestsContainer = document.getElementById('lessonTests');
-            if (studentData.lessonTests && studentData.lessonTests.length > 0) {
-                studentData.lessonTests.forEach(test => {
-                    const testCard = document.createElement('div');
-                    testCard.className = 'test-card';
-                    testCard.innerHTML = `
-                        <div class="test-name">${test.lessonName}</div>
-                        <div class="test-result">النتيجة: ${test.result}%</div>
-                        <div class="test-date">تاريخ الاختبار: ${test.date}</div>
-                    `;
-                    lessonTestsContainer.appendChild(testCard);
-                });
-            } else {
-                lessonTestsContainer.innerHTML = '<p>لا توجد اختبارات للدروس مسجلة</p>';
-            }
+            // عرض اختبارات الأجزاء مع تحديد أحدث اختبار
+            displayTests(studentData.partTests, 'partTests', 'partName', 'اختبار جزء');
             
-            // عرض اختبارات التجويد
-            const tajweedTestsContainer = document.getElementById('tajweedTests');
-            if (studentData.tajweedTests && studentData.tajweedTests.length > 0) {
-                studentData.tajweedTests.forEach(test => {
+            // عرض اختبارات الدروس مع تحديد أحدث اختبار
+            displayTests(studentData.lessonTests, 'lessonTests', 'lessonName', 'اختبار درس');
+            
+            // عرض اختبارات التجويد مع تحديد أحدث اختبار
+            displayTests(studentData.tajweedTests, 'tajweedTests', 'testName', 'اختبار تجويد');
+            
+            // دالة لعرض الاختبارات مع تحديد أحدثها
+            function displayTests(tests, containerId, nameField, defaultName) {
+                const container = document.getElementById(containerId);
+                
+                if (!tests || tests.length === 0) {
+                    container.innerHTML = '<div class="no-tests"><i class="far fa-folder-open"></i> لا توجد اختبارات مسجلة</div>';
+                    return;
+                }
+                
+                // ترتيب الاختبارات من الأحدث إلى الأقدم
+                tests.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                // عرض الاختبارات مع تمييز الأحدث
+                tests.forEach((test, index) => {
                     const testCard = document.createElement('div');
-                    testCard.className = 'test-card';
+                    testCard.className = 'test-card' + (index === 0 ? ' latest' : '');
+                    
+                    const testName = test[nameField] || defaultName;
+                    const resultClass = test.result >= 80 ? 'high-score' : test.result >= 50 ? 'medium-score' : 'low-score';
+                    
                     testCard.innerHTML = `
-                        <div class="test-name">${test.testName}</div>
-                        <div class="test-result">النتيجة: ${test.result}%</div>
-                        <div class="test-date">تاريخ الاختبار: ${test.date}</div>
+                        ${index === 0 ? '<div class="test-badge"><i class="fas fa-star"></i> الأحدث</div>' : ''}
+                        <div class="test-name">${testName}</div>
+                        <div class="test-result">
+                            النتيجة: <span class="${resultClass}">${test.result}%</span>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: ${test.result}%"></div>
+                        </div>
+                        <div class="test-date"><i class="far fa-calendar-alt"></i> ${test.date}</div>
                     `;
-                    tajweedTestsContainer.appendChild(testCard);
+                    
+                    container.appendChild(testCard);
                 });
-            } else {
-                tajweedTestsContainer.innerHTML = '<p>لا توجد اختبارات للتجويد مسجلة</p>';
             }
         });
     </script>
