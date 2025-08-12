@@ -1,47 +1,5 @@
 [
   {
-    "name": "ÙØ­ÙØ¯ Ø¹ÙÙ",
-    "code": "654321",
-    "image": "https://github.com/aboelfooz/islamic-site/raw/main/images/student-001.jpg",
-    "overallLevel": "ÙØªÙØ¯Ù",
-    "partTests": [
-      {
-        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ£ÙÙ",
-        "result": 92,
-        "date": "2023-06-11"
-      },
-      {
-        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ«Ø§ÙÙ",
-        "result": 88,
-        "date": "2023-06-18"
-      }
-    ],
-    "lessonTests": [
-      {
-        "lessonName": "Ø¯Ø±Ø³ Ø§ÙØªÙØ­ÙØ¯",
-        "result": 95,
-        "date": "2023-06-06"
-      },
-      {
-        "lessonName": "Ø¯Ø±Ø³ Ø§ÙÙÙÙ",
-        "result": 89,
-        "date": "2023-06-13"
-      }
-    ],
-    "tajweedTests": [
-      {
-        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙØ¯ÙØ¯",
-        "result": 85,
-        "date": "2023-06-09"
-      },
-      {
-        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙÙÙ",
-        "result": 90,
-        "date": "2023-06-16"
-      }
-    ]
-  },
-  {
     "name": "Ø®Ø§ÙØ¯ ÙÙØ³Ù",
     "code": "789012",
     "image": "https://github.com/aboelfooz/islamic-site/raw/main/images/student-002.jpg",
