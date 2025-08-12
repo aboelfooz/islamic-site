@@ -3,7 +3,13 @@
     "name": "محمد مسلم",
     "code": "123456",
     "overallLevel": "متوسط",
-    "lessonTests": [],
+    "lessonTests": [
+      {
+        "lessonName": "فقه",
+        "result": 90,
+        "date": "2025-08-06"
+      }
+    ],
     "tajweedTests": [],
     "memorizationTests": [
       {
