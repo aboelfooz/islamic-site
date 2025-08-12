@@ -17,7 +17,13 @@
     "name": "يحيى زكريا الحجي",
     "code": "123456",
     "overallLevel": "متوسط",
-    "lessonTests": [],
+    "lessonTests": [
+      {
+        "lessonName": "فقه",
+        "result": 90,
+        "date": "2025-08-12"
+      }
+    ],
     "tajweedTests": [
       {
         "testName": "مد لازم",
