@@ -1,37 +1,48 @@
 [
   {
-    "name": "مم",
+    "name": "ÙÙ",
     "code": "964378",
-    "overallLevel": "متوسط",
+    "overallLevel": "ÙØªÙØ³Ø·",
     "lessonTests": [
       {
-        "lessonName": "فقه",
+        "lessonName": "ÙÙÙ",
         "result": 60,
         "date": "2025-08-20"
       },
       {
-        "lessonName": "سيرة",
+        "lessonName": "Ø³ÙØ±Ø©",
         "result": 100,
         "date": "2025-08-06"
       }
     ],
     "tajweedTests": [
       {
-        "testName": "مدود",
+        "testName": "ÙØ¯ÙØ¯",
         "result": 90,
         "date": "2025-08-12"
       }
     ],
-    "memorizationTests": [] 
+    "memorizationTests": [
+      {
+        "testName": "الجزء الاول",
+        "result": 90,
+        "date": "2025-08-27"
+      },
+      {
+        "testName": "الجزء الاول",
+        "result": 90,
+        "date": "2025-08-27"
+      }
+    ]
   },
   {
     "name": "Mohamed",
     "code": "128739",
-    "overallLevel": "متوسط",
+    "overallLevel": "ÙØªÙØ³Ø·",
     "lessonTests": [],
     "tajweedTests": [
       {
-        "testName": "المد",
+        "testName": "Ø§ÙÙØ¯",
         "result": 90,
         "date": "2025-08-12"
       }
