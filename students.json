@@ -4,7 +4,13 @@
     "code": "964378",
     "overallLevel": "متوسط",
     "lessonTests": [],
-    "tajweedTests": []
+    "tajweedTests": [
+      {
+        "testName": "مدود",
+        "result": 90,
+        "date": "2025-08-12"
+      }
+    ]
   },
   {
     "name": "Mohamed",
