@@ -5,6 +5,12 @@
     "overallLevel": "",
     "lessonTests": [],
     "tajweedTests": [],
-    "memorizationTests": []
+    "memorizationTests": [
+      {
+        "testName": "الجزء الاول",
+        "result": 99,
+        "date": "2025-08-20"
+      }
+    ]
   }
 ]
