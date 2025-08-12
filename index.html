@@ -155,7 +155,7 @@
             async function fetchStudents() {
                 try {
                     // محاولة جلب البيانات من GitHub
-                    const response = await fetch('https://raw.githubusercontent.com/aboelfooz/islamic-site/main/student.json');
+                    const response = await fetch('https://raw.githubusercontent.com/aboelfooz/islamic-site/main/students.json');
                     
                     if (!response.ok) {
                         throw new Error('فشل في جلب البيانات');
