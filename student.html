@@ -1,35 +1,296 @@
-[
-  {
-    "name": "أحمد محمد",
-    "level": "متوسط",
-    "code": "123456",
-    "image": "https://github.com/aboelfooz/islamic-site/raw/main/images/student-123.jpg",
-    "progress": {
-      "memorization": 45,
-      "tests": 60
-    },
-    "stats": {
-      "memorizedParts": 5,
-      "completedLessons": 12,
-      "streakDays": 7,
-      "passedTests": 8
-    },
-    "dateAdded": "2023-06-18T10:30:00Z"
-  },
-  {
-    "name": "ديبا بيّا",
-    "level": "مبتدئ",
-    "code": "654321",
-    "progress": {
-      "memorization": 20,
-      "tests": 15
-    },
-    "stats": {
-      "memorizedParts": 2,
-      "completedLessons": 5,
-      "streakDays": 3,
-      "passedTests": 2
-    },
-    "dateAdded": "2023-06-20T14:45:00Z"
-  }
-]
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="معهد جيل الأمة - الصفحة الشخصية للطالب">
+  <title>معهد جيل الأمة - الصفحة الشخصية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary-color: #2c786c;
+      --secondary-color: #004445;
+      --accent-color: #f8b400;
+      --text-color: #333;
+      --light-bg: #faf5e4;
+      --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #f5f5f5;
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    .header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .profile-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      padding: 1.5rem;
+      background-color: var(--secondary-color);
+      color: white;
+    }
+
+    .profile-image {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent-color);
+      margin-left: 1.5rem;
+    }
+
+    .profile-info {
+      flex: 1;
+    }
+
+    .profile-name {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .profile-level {
+      margin: 0.5rem 0 0;
+      font-weight: normal;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .profile-body {
+      padding: 1.5rem;
+    }
+
+    .section-title {
+      color: var(--secondary-color);
+      border-bottom: 2px solid #eee;
+      padding-bottom: 0.5rem;
+      margin-top: 0;
+      font-size: 1.3rem;
+    }
+
+    .progress-container {
+      margin-bottom: 1.5rem;
+    }
+
+    .progress-title {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .progress-bar {
+      height: 10px;
+      background-color: #eee;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background-color: var(--primary-color);
+      border-radius: 5px;
+      transition: width 0.5s ease;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: var(--card-shadow);
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin: 0.5rem 0;
+      font-weight: bold;
+    }
+
+    .stat-label {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .logout-btn {
+      display: block;
+      text-align: center;
+      margin: 2rem auto;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--accent-color);
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      font-family: 'Tajawal', sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      max-width: 200px;
+    }
+
+    .logout-btn:hover {
+      background-color: #e0a800;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .profile-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .profile-image {
+        margin-left: 0;
+        margin-bottom: 1rem;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1>معهد جيل الأمة - الصفحة الشخصية</h1>
+  </header>
+
+  <div class="container">
+    <div class="profile-card">
+      <div class="profile-header">
+        <img id="studentImage" src="default-avatar.jpg" alt="صورة الطالب" class="profile-image">
+        <div class="profile-info">
+          <h2 id="studentName" class="profile-name">اسم الطالب</h2>
+          <p id="studentLevel" class="profile-level">المستوى: مبتدئ</p>
+        </div>
+      </div>
+      
+      <div class="profile-body">
+        <h3 class="section-title">مستوى التقدم</h3>
+        <div class="progress-container">
+          <div class="progress-title">
+            <span>إنجاز الحفظ</span>
+            <span id="memorizationPercent">0%</span>
+          </div>
+          <div class="progress-bar">
+            <div id="memorizationProgress" class="progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+        
+        <div class="progress-container">
+          <div class="progress-title">
+            <span>إنجاز الاختبارات</span>
+            <span id="testsPercent">0%</span>
+          </div>
+          <div class="progress-bar">
+            <div id="testsProgress" class="progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+        
+        <h3 class="section-title">إحصائيات الطالب</h3>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">الأجزاء المحفوظة</div>
+            <div id="memorizedParts" class="stat-number">0</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-label">الدروس المكتملة</div>
+            <div id="completedLessons" class="stat-number">0</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-label">الأيام المتتالية</div>
+            <div id="streakDays" class="stat-number">0</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-label">الاختبارات الناجحة</div>
+            <div id="passedTests" class="stat-number">0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <button id="logoutBtn" class="logout-btn">تسجيل الخروج <i class="fas fa-sign-out-alt"></i></button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // جلب بيانات الطالب من localStorage
+      const studentData = JSON.parse(localStorage.getItem('currentStudent'));
+      
+      if (!studentData) {
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      // تعبئة بيانات الطالب في الصفحة
+      document.getElementById('studentName').textContent = studentData.name;
+      document.getElementById('studentLevel').textContent = `المستوى: ${studentData.level}`;
+      
+      if (studentData.image) {
+        document.getElementById('studentImage').src = studentData.image;
+      }
+      
+      // تعبئة إحصائيات التقدم
+      document.getElementById('memorizationPercent').textContent = `${studentData.progress.memorization}%`;
+      document.getElementById('memorizationProgress').style.width = `${studentData.progress.memorization}%`;
+      
+      document.getElementById('testsPercent').textContent = `${studentData.progress.tests}%`;
+      document.getElementById('testsProgress').style.width = `${studentData.progress.tests}%`;
+      
+      document.getElementById('memorizedParts').textContent = studentData.stats.memorizedParts;
+      document.getElementById('completedLessons').textContent = studentData.stats.completedLessons;
+      document.getElementById('streakDays').textContent = studentData.stats.streakDays;
+      document.getElementById('passedTests').textContent = studentData.stats.passedTests;
+      
+      // معالج حدث تسجيل الخروج
+      document.getElementById('logoutBtn').addEventListener('click', function() {
+        localStorage.removeItem('currentStudent');
+        window.location.href = 'index.html';
+      });
+    });
+  </script>
+</body>
+</html>
