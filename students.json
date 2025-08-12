@@ -1,0 +1,17 @@
+[
+    {
+        "name": "أحمد محمد",
+        "level": "متوسط",
+        "code": "123456",
+        "progress": {
+            "memorization": 45,
+            "tests": 60
+        },
+        "stats": {
+            "memorizedParts": 5,
+            "completedLessons": 12,
+            "streakDays": 7,
+            "passedTests": 8
+        }
+    }
+]
