@@ -3,7 +3,13 @@
     "name": "مم",
     "code": "964378",
     "overallLevel": "متوسط",
-    "lessonTests": [],
+    "lessonTests": [
+      {
+        "lessonName": "فقه",
+        "result": 60,
+        "date": "2025-08-20"
+      }
+    ],
     "tajweedTests": [
       {
         "testName": "مدود",
