@@ -13,5 +13,80 @@
             "streakDays": 7,
             "passedTests": 8
         }
+    },
+    {
+        "name": "محمد علي",
+        "level": "مبتدئ",
+        "code": "654321",
+        "progress": {
+            "memorization": 20,
+            "tests": 40
+        },
+        "stats": {
+            "memorizedParts": 2,
+            "completedLessons": 5,
+            "streakDays": 3,
+            "passedTests": 2
+        }
+    },
+    {
+        "name": "سارة خالد",
+        "level": "متقدم",
+        "code": "112233",
+        "progress": {
+            "memorization": 80,
+            "tests": 90
+        },
+        "stats": {
+            "memorizedParts": 10,
+            "completedLessons": 20,
+            "streakDays": 15,
+            "passedTests": 14
+        }
+    },
+    {
+        "name": "خالد حسن",
+        "level": "متوسط",
+        "code": "445566",
+        "progress": {
+            "memorization": 50,
+            "tests": 55
+        },
+        "stats": {
+            "memorizedParts": 6,
+            "completedLessons": 13,
+            "streakDays": 6,
+            "passedTests": 7
+        }
+    },
+    {
+        "name": "ليلى أحمد",
+        "level": "مبتدئ",
+        "code": "778899",
+        "progress": {
+            "memorization": 15,
+            "tests": 35
+        },
+        "stats": {
+            "memorizedParts": 1,
+            "completedLessons": 4,
+            "streakDays": 2,
+            "passedTests": 1
+        }
+    },
+    {
+        "name": "يوسف محمود",
+        "level": "متقدم",
+        "code": "991122",
+        "progress": {
+            "memorization": 75,
+            "tests": 85
+        },
+        "stats": {
+            "memorizedParts": 9,
+            "completedLessons": 18,
+            "streakDays": 12,
+            "passedTests": 13
+        }
     }
 ]
