@@ -31,6 +31,12 @@
         "date": "2025-08-12"
       }
     ],
-    "memorizationTests": []
+    "memorizationTests": [
+      {
+        "testName": "الجزء الثاني",
+        "result": 50,
+        "date": "2025-08-12"
+      }
+    ]
   }
 ]
