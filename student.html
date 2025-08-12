@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -524,7 +525,7 @@
     <div class="container">
         <div class="profile-card">
             <div class="profile-header">
-                <img id="studentImage" class="profile-image" src="https://via.placeholder.com/100" alt="صورة الطالب">
+                
                 <div class="profile-info">
                     <h2 id="studentName" class="profile-name">اسم الطالب</h2>
                     <p id="studentLevel" class="profile-level">
@@ -557,8 +558,8 @@
             
             <div class="section">
                 <h3 class="section-title">
-                    <i class="fas fa-quran"></i>
-                    اختبارات القرآن
+                    
+                    اختبارات القران
                 </h3>
                 <div class="tests-container" id="memorizationTests"></div>
             </div>
@@ -572,61 +573,36 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // بيانات تجريبية للاختبار (يمكن استبدالها بالبيانات الفعلية من localStorage)
-            const studentData = {
-                name: "محمد أحمد",
-                image: "https://via.placeholder.com/100",
-                overallLevel: "المستوى الثالث",
-                overallProgress: 75,
-                lessonTests: [
-                    {
-                        lessonName: "درس التوحيد",
-                        result: 95,
-                        date: "2025-08-10"
-                    },
-                    {
-                        lessonName: "درس الفقه",
-                        result: 88,
-                        date: "2025-08-05"
-                    }
-                ],
-                tajweedTests: [
-                    {
-                        testName: "اختبار أحكام النون الساكنة",
-                        result: 92,
-                        date: "2025-08-08"
-                    }
-                ],
-                memorizationTests: [
-                    {
-                        testName: "سورة البقرة (آية 1-10)",
-                        result: 97,
-                        date: "2025-08-12"
-                    },
-                    {
-                        testName: "سورة الفاتحة",
-                        result: 99,
-                        date: "2025-08-01"
-                    }
-                ]
-            };
-
+            const studentData = JSON.parse(localStorage.getItem('currentStudent'));
+            
+            if (!studentData) {
+                window.location.href = 'index.html';
+                return;
+            }
+            
             // تعبئة بيانات الطالب
             document.getElementById('studentName').textContent = studentData.name;
             document.getElementById('overallLevelText').textContent = studentData.overallLevel || 'غير محدد';
-            document.getElementById('studentImage').src = studentData.image;
-            document.getElementById('overallProgress').style.width = studentData.overallProgress + '%';
             
-            // عرض اختبارات الدروس
+            if (studentData.image) {
+                document.getElementById('studentImage').src = studentData.image;
+            }
+            
+            // حساب المستوى العام كنسبة مئوية
+            if (studentData.overallProgress) {
+                document.getElementById('overallProgress').style.width = studentData.overallProgress + '%';
+            }
+            
+            // عرض اختبارات الدروس (بنفس معايير التجويد)
             displayTests(studentData.lessonTests, 'lessonTests', 'lessonName', 'اختبار درس', 'book-open', 'lesson');
             
             // عرض اختبارات التجويد
             displayTests(studentData.tajweedTests, 'tajweedTests', 'testName', 'اختبار تجويد', 'microphone-alt', 'tajweed');
             
-            // عرض اختبارات الحفظ
-            displayTests(studentData.memorizationTests, 'memorizationTests', 'testName', 'اختبار قرآن', 'quran', 'memorization');
+            // عرض اختبارات الحفظ (بالمعايير المحددة)
+            displayTests(studentData.memorizationTests, 'memorizationTests', 'testName', 'اختبار قران', 'quran', 'memorization');
             
-            // دالة لعرض الاختبارات مع معالجة النصوص العربية
+            // دالة لعرض الاختبارات بشكل جميل مع معايير مختلفة لكل نوع
             function displayTests(tests, containerId, nameField, defaultName, iconName, testType) {
                 const container = document.getElementById(containerId);
                 
@@ -648,8 +624,7 @@
                     const testCard = document.createElement('div');
                     testCard.className = 'test-card' + (index === 0 ? ' latest' : '');
                     
-                    // تنظيف النص من أي أحرف غير مرغوب فيها
-                    const testName = cleanArabicText(test[nameField] || defaultName);
+                    const testName = test[nameField] || defaultName;
                     const result = test.result || 0;
                     const date = test.date || 'غير محدد';
                     
@@ -658,7 +633,7 @@
                     let resultClass = '';
                     
                     if (testType === 'memorization') {
-                        // معايير اختبارات الحفظ
+                        // معايير اختبارات الحفظ حسب المطلوب
                         if (result >= 97) {
                             evaluation = 'تفوق';
                             resultClass = 'high-score';
@@ -676,7 +651,7 @@
                             resultClass = 'low-score';
                         }
                     } else {
-                        // معايير اختبارات التجويد والدروس
+                        // معايير اختبارات التجويد والدروس حسب المطلوب
                         if (result >= 97) {
                             evaluation = 'تفوق';
                             resultClass = 'high-score';
@@ -717,36 +692,20 @@
                 });
             }
             
-            // دالة لتنظيف النصوص العربية من الأحرف غير المرغوب فيها
-            function cleanArabicText(text) {
-                if (!text) return '';
-                
-                // إزالة الأحرف الخاصة مثل @
-                text = text.replace(/@/g, '');
-                
-                // إزالة أي أحرف غير عربية أو غير مرغوب فيها
-                text = text.replace(/[^\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF\s\.\,\-]/g, '');
-                
-                // تقليم المسافات الزائدة
-                text = text.trim().replace(/\s+/g, ' ');
-                
-                return text;
-            }
-            
             // دالة للحصول على لون شريط التقدم حسب النتيجة ونوع الاختبار
             function getProgressColor(result, testType) {
                 if (testType === 'memorization') {
-                    if (result >= 97) return 'var(--success-dark)';
-                    if (result >= 94) return 'var(--success)';
-                    if (result >= 91) return 'var(--warning)';
-                    if (result >= 85) return 'var(--warning-light)';
-                    return 'var(--danger)';
+                    if (result >= 97) return 'var(--success-dark)'; // تفوق
+                    if (result >= 94) return 'var(--success)'; // ممتاز
+                    if (result >= 91) return 'var(--warning)'; // جيد جداً
+                    if (result >= 85) return 'var(--warning-light)'; // جيد
+                    return 'var(--danger)'; // ضعيف
                 } else {
-                    if (result >= 97) return 'var(--success-dark)';
-                    if (result >= 94) return 'var(--success)';
-                    if (result >= 90) return 'var(--warning)';
-                    if (result >= 80) return 'var(--warning-light)';
-                    return 'var(--danger)';
+                    if (result >= 97) return 'var(--success-dark)'; // تفوق
+                    if (result >= 94) return 'var(--success)'; // ممتاز
+                    if (result >= 90) return 'var(--warning)'; // جيد جداً
+                    if (result >= 80) return 'var(--warning-light)'; // جيد
+                    return 'var(--danger)'; // ضعيف
                 }
             }
         });
