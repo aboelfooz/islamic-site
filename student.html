@@ -11,9 +11,11 @@
             --accent-color: #f8b400;
             --text-color: #333;
             --light-bg: #faf5e4;
-            --success-color: #4caf50;
-            --warning-color: #ff9800;
-            --danger-color: #f44336;
+            --success-dark: #2e7d32;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --warning-light: #ffc107;
+            --danger: #f44336;
         }
 
         body {
@@ -284,15 +286,15 @@
         }
 
         .high-score {
-            color: var(--success-color);
+            color: var(--success);
         }
 
         .medium-score {
-            color: var(--warning-color);
+            color: var(--warning);
         }
 
         .low-score {
-            color: var(--danger-color);
+            color: var(--danger);
         }
 
         .test-date {
@@ -474,17 +476,17 @@
                 document.getElementById('overallProgress').style.width = studentData.overallProgress + '%';
             }
             
-            // عرض اختبارات الدروس
-            displayTests(studentData.lessonTests, 'lessonTests', 'lessonName', 'اختبار درس', 'book-open');
+            // عرض اختبارات الدروس (نفس معايير التجويد)
+            displayTests(studentData.lessonTests, 'lessonTests', 'lessonName', 'اختبار درس', 'book-open', 'lesson');
             
             // عرض اختبارات التجويد
-            displayTests(studentData.tajweedTests, 'tajweedTests', 'testName', 'اختبار تجويد', 'microphone-alt');
+            displayTests(studentData.tajweedTests, 'tajweedTests', 'testName', 'اختبار تجويد', 'microphone-alt', 'tajweed');
             
-            // عرض اختبارات الحفظ
-            displayTests(studentData.memorizationTests, 'memorizationTests', 'testName', 'اختبار حفظ', 'quran');
+            // عرض اختبارات الحفظ (بالمعايير الجديدة)
+            displayTests(studentData.memorizationTests, 'memorizationTests', 'testName', 'اختبار حفظ', 'quran', 'memorization');
             
-            // دالة لعرض الاختبارات بشكل جميل
-            function displayTests(tests, containerId, nameField, defaultName, iconName) {
+            // دالة لعرض الاختبارات بشكل جميل مع معايير مختلفة لكل نوع
+            function displayTests(tests, containerId, nameField, defaultName, iconName, testType) {
                 const container = document.getElementById(containerId);
                 
                 if (!tests || tests.length === 0) {
@@ -509,28 +511,46 @@
                     const result = test.result || 0;
                     const date = test.date || 'غير محدد';
                     
-                    // تحديد فئة النتيجة
-                    let resultClass = '';
-                    if (result >= 80) {
-                        resultClass = 'high-score';
-                    } else if (result >= 50) {
-                        resultClass = 'medium-score';
-                    } else {
-                        resultClass = 'low-score';
-                    }
-                    
-                    // تحديد التقييم
+                    // تحديد التقييم حسب نوع الاختبار
                     let evaluation = '';
-                    if (result >= 90) {
-                        evaluation = 'ممتاز';
-                    } else if (result >= 80) {
-                        evaluation = 'جيد جداً';
-                    } else if (result >= 70) {
-                        evaluation = 'جيد';
-                    } else if (result >= 50) {
-                        evaluation = 'مقبول';
+                    let resultClass = '';
+                    
+                    if (testType === 'memorization') {
+                        // معايير اختبارات الحفظ
+                        if (result >= 95) {
+                            evaluation = 'تفوق';
+                            resultClass = 'high-score';
+                        } else if (result >= 85) {
+                            evaluation = 'ممتاز';
+                            resultClass = 'high-score';
+                        } else if (result >= 75) {
+                            evaluation = 'جيد جداً';
+                            resultClass = 'medium-score';
+                        } else if (result >= 65) {
+                            evaluation = 'جيد';
+                            resultClass = 'medium-score';
+                        } else {
+                            evaluation = 'ضعيف - إعادة';
+                            resultClass = 'low-score';
+                        }
                     } else {
-                        evaluation = 'ضعيف';
+                        // معايير اختبارات التجويد والدروس
+                        if (result >= 90) {
+                            evaluation = 'تفوق';
+                            resultClass = 'high-score';
+                        } else if (result >= 80) {
+                            evaluation = 'ممتاز';
+                            resultClass = 'high-score';
+                        } else if (result >= 70) {
+                            evaluation = 'جيد جداً';
+                            resultClass = 'medium-score';
+                        } else if (result >= 60) {
+                            evaluation = 'جيد';
+                            resultClass = 'medium-score';
+                        } else {
+                            evaluation = 'ضعيف - إعادة';
+                            resultClass = 'low-score';
+                        }
                     }
                     
                     testCard.innerHTML = `
@@ -546,20 +566,30 @@
                             </div>
                         </div>
                         <div class="mini-progress">
-                            <div class="mini-progress-bar" style="width: ${result}%; background-color: ${getProgressColor(result)}"></div>
+                            <div class="mini-progress-bar" style="width: ${result}%; background-color: ${getProgressColor(result, testType)}"></div>
                         </div>
-                        <div class="test-evaluation">التقييم: ${evaluation}</div>
+                        <div class="test-evaluation">التقييم: <strong>${evaluation}</strong></div>
                     `;
                     
                     container.appendChild(testCard);
                 });
             }
             
-            // دالة للحصول على لون شريط التقدم حسب النتيجة
-            function getProgressColor(result) {
-                if (result >= 80) return '#4caf50';
-                if (result >= 50) return '#ff9800';
-                return '#f44336';
+            // دالة للحصول على لون شريط التقدم حسب النتيجة ونوع الاختبار
+            function getProgressColor(result, testType) {
+                if (testType === 'memorization') {
+                    if (result >= 95) return 'var(--success-dark)'; // تفوق
+                    if (result >= 85) return 'var(--success)'; // ممتاز
+                    if (result >= 75) return 'var(--warning)'; // جيد جداً
+                    if (result >= 65) return 'var(--warning-light)'; // جيد
+                    return 'var(--danger)'; // ضعيف
+                } else {
+                    if (result >= 90) return 'var(--success-dark)'; // تفوق
+                    if (result >= 80) return 'var(--success)'; // ممتاز
+                    if (result >= 70) return 'var(--warning)'; // جيد جداً
+                    if (result >= 60) return 'var(--warning-light)'; // جيد
+                    return 'var(--danger)'; // ضعيف
+                }
             }
         });
     </script>
