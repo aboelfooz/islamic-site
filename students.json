@@ -18,7 +18,13 @@
     "code": "123456",
     "overallLevel": "متوسط",
     "lessonTests": [],
-    "tajweedTests": [],
+    "tajweedTests": [
+      {
+        "testName": "مد لازم",
+        "result": 100,
+        "date": "2025-08-12"
+      }
+    ],
     "memorizationTests": []
   }
 ]
