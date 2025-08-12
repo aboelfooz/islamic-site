@@ -476,13 +476,13 @@
                 document.getElementById('overallProgress').style.width = studentData.overallProgress + '%';
             }
             
-            // عرض اختبارات الدروس (نفس معايير التجويد)
+            // عرض اختبارات الدروس (بنفس معايير التجويد)
             displayTests(studentData.lessonTests, 'lessonTests', 'lessonName', 'اختبار درس', 'book-open', 'lesson');
             
             // عرض اختبارات التجويد
             displayTests(studentData.tajweedTests, 'tajweedTests', 'testName', 'اختبار تجويد', 'microphone-alt', 'tajweed');
             
-            // عرض اختبارات الحفظ (بالمعايير الجديدة)
+            // عرض اختبارات الحفظ (بالمعايير المحددة)
             displayTests(studentData.memorizationTests, 'memorizationTests', 'testName', 'اختبار حفظ', 'quran', 'memorization');
             
             // دالة لعرض الاختبارات بشكل جميل مع معايير مختلفة لكل نوع
@@ -516,17 +516,17 @@
                     let resultClass = '';
                     
                     if (testType === 'memorization') {
-                        // معايير اختبارات الحفظ
-                        if (result >= 95) {
+                        // معايير اختبارات الحفظ حسب المطلوب
+                        if (result >= 97) {
                             evaluation = 'تفوق';
                             resultClass = 'high-score';
-                        } else if (result >= 85) {
+                        } else if (result >= 94) {
                             evaluation = 'ممتاز';
                             resultClass = 'high-score';
-                        } else if (result >= 75) {
+                        } else if (result >= 91) {
                             evaluation = 'جيد جداً';
                             resultClass = 'medium-score';
-                        } else if (result >= 65) {
+                        } else if (result >= 85) {
                             evaluation = 'جيد';
                             resultClass = 'medium-score';
                         } else {
@@ -534,17 +534,17 @@
                             resultClass = 'low-score';
                         }
                     } else {
-                        // معايير اختبارات التجويد والدروس
-                        if (result >= 90) {
+                        // معايير اختبارات التجويد والدروس حسب المطلوب
+                        if (result >= 97) {
                             evaluation = 'تفوق';
                             resultClass = 'high-score';
-                        } else if (result >= 80) {
+                        } else if (result >= 94) {
                             evaluation = 'ممتاز';
                             resultClass = 'high-score';
-                        } else if (result >= 70) {
+                        } else if (result >= 90) {
                             evaluation = 'جيد جداً';
                             resultClass = 'medium-score';
-                        } else if (result >= 60) {
+                        } else if (result >= 80) {
                             evaluation = 'جيد';
                             resultClass = 'medium-score';
                         } else {
@@ -578,16 +578,16 @@
             // دالة للحصول على لون شريط التقدم حسب النتيجة ونوع الاختبار
             function getProgressColor(result, testType) {
                 if (testType === 'memorization') {
-                    if (result >= 95) return 'var(--success-dark)'; // تفوق
-                    if (result >= 85) return 'var(--success)'; // ممتاز
-                    if (result >= 75) return 'var(--warning)'; // جيد جداً
-                    if (result >= 65) return 'var(--warning-light)'; // جيد
+                    if (result >= 97) return 'var(--success-dark)'; // تفوق
+                    if (result >= 94) return 'var(--success)'; // ممتاز
+                    if (result >= 91) return 'var(--warning)'; // جيد جداً
+                    if (result >= 85) return 'var(--warning-light)'; // جيد
                     return 'var(--danger)'; // ضعيف
                 } else {
-                    if (result >= 90) return 'var(--success-dark)'; // تفوق
-                    if (result >= 80) return 'var(--success)'; // ممتاز
-                    if (result >= 70) return 'var(--warning)'; // جيد جداً
-                    if (result >= 60) return 'var(--warning-light)'; // جيد
+                    if (result >= 97) return 'var(--success-dark)'; // تفوق
+                    if (result >= 94) return 'var(--success)'; // ممتاز
+                    if (result >= 90) return 'var(--warning)'; // جيد جداً
+                    if (result >= 80) return 'var(--warning-light)'; // جيد
                     return 'var(--danger)'; // ضعيف
                 }
             }
