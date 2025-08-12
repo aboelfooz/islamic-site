@@ -199,7 +199,7 @@
       async function fetchStudents() {
         try {
           // المحاولة الأولى: استخدام GitHub API
-          const apiResponse = await fetch('https://api.github.com/repos/aboelfooz/islamic-site/contents/students.json');
+          const apiResponse = await fetch('https://api.github.com/repos/aboelfooz/islamic-site/contents/student.json');
           
           if (apiResponse.ok) {
             const apiData = await apiResponse.json();
@@ -210,7 +210,7 @@
           }
           
           // المحاولة الثانية: استخدام RawGit كبديل
-          const rawResponse = await fetch('https://raw.githubusercontent.com/aboelfooz/islamic-site/main/students.json');
+          const rawResponse = await fetch('https://raw.githubusercontent.com/aboelfooz/islamic-site/main/student.json');
           
           if (rawResponse.ok) {
             const rawData = await rawResponse.json();
