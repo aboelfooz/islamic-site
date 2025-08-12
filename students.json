@@ -1,11 +1,11 @@
 [
   {
-    "name": "محمد مسلم",
+    "name": "ÙØ­ÙØ¯ ÙØ³ÙÙ",
     "code": "123456",
-    "overallLevel": "متوسط",
+    "overallLevel": "ÙØªÙØ³Ø·",
     "lessonTests": [
       {
-        "lessonName": "فقه",
+        "lessonName": "ÙÙÙ",
         "result": 90,
         "date": "2025-08-06"
       }
@@ -13,9 +13,14 @@
     "tajweedTests": [],
     "memorizationTests": [
       {
-        "testName": "الجزء الاول",
+        "testName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ§ÙÙ",
         "result": 100,
         "date": "2025-08-25"
+      },
+      {
+        "testName": "الحزء الاول",
+        "result": 66,
+        "date": "2025-08-24"
       }
     ]
   }
