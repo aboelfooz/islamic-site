@@ -5,7 +5,13 @@
     "overallLevel": "متقدم",
     "lessonTests": [],
     "tajweedTests": [],
-    "memorizationTests": []
+    "memorizationTests": [
+      {
+        "testName": "الجزء الأول",
+        "result": 100,
+        "date": "2025-08-12"
+      }
+    ]
   },
   {
     "name": "محمود عيد",
