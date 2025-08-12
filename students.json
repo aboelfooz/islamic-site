@@ -1,182 +1,436 @@
 [
   {
-    "name": "أحمد محمد",
+    "name": "Ø£Ø­ÙØ¯ ÙØ­ÙØ¯",
     "code": "123456",
     "image": "https://github.com/aboelfooz/islamic-site/raw/main/images/student-123.jpg",
-    "overallLevel": "متوسط",
+    "overallLevel": "ÙØªÙØ³Ø·",
     "partTests": [
-      { "partName": "الجزء الأول", "result": 85, "date": "2023-06-10" },
-      { "partName": "الجزء الثاني", "result": 78, "date": "2023-06-17" }
+      {
+        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ£ÙÙ",
+        "result": 85,
+        "date": "2023-06-10"
+      },
+      {
+        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ«Ø§ÙÙ",
+        "result": 78,
+        "date": "2023-06-17"
+      }
     ],
     "lessonTests": [
-      { "lessonName": "درس التوحيد", "result": 90, "date": "2023-06-05" },
-      { "lessonName": "درس الفقه", "result": 82, "date": "2023-06-12" }
+      {
+        "lessonName": "Ø¯Ø±Ø³ Ø§ÙØªÙØ­ÙØ¯",
+        "result": 90,
+        "date": "2023-06-05"
+      },
+      {
+        "lessonName": "Ø¯Ø±Ø³ Ø§ÙÙÙÙ",
+        "result": 82,
+        "date": "2023-06-12"
+      }
     ],
     "tajweedTests": [
-      { "testName": "اختبار المدود", "result": 75, "date": "2023-06-08" },
-      { "testName": "اختبار الوقف", "result": 88, "date": "2023-06-15" }
+      {
+        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙØ¯ÙØ¯",
+        "result": 75,
+        "date": "2023-06-08"
+      },
+      {
+        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙÙÙ",
+        "result": 88,
+        "date": "2023-06-15"
+      }
     ]
   },
   {
-    "name": "محمد علي",
+    "name": "ÙØ­ÙØ¯ Ø¹ÙÙ",
     "code": "654321",
     "image": "https://github.com/aboelfooz/islamic-site/raw/main/images/student-001.jpg",
-    "overallLevel": "متقدم",
+    "overallLevel": "ÙØªÙØ¯Ù",
     "partTests": [
-      { "partName": "الجزء الأول", "result": 92, "date": "2023-06-11" },
-      { "partName": "الجزء الثاني", "result": 88, "date": "2023-06-18" }
+      {
+        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ£ÙÙ",
+        "result": 92,
+        "date": "2023-06-11"
+      },
+      {
+        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ«Ø§ÙÙ",
+        "result": 88,
+        "date": "2023-06-18"
+      }
     ],
     "lessonTests": [
-      { "lessonName": "درس التوحيد", "result": 95, "date": "2023-06-06" },
-      { "lessonName": "درس الفقه", "result": 89, "date": "2023-06-13" }
+      {
+        "lessonName": "Ø¯Ø±Ø³ Ø§ÙØªÙØ­ÙØ¯",
+        "result": 95,
+        "date": "2023-06-06"
+      },
+      {
+        "lessonName": "Ø¯Ø±Ø³ Ø§ÙÙÙÙ",
+        "result": 89,
+        "date": "2023-06-13"
+      }
     ],
     "tajweedTests": [
-      { "testName": "اختبار المدود", "result": 85, "date": "2023-06-09" },
-      { "testName": "اختبار الوقف", "result": 90, "date": "2023-06-16" }
+      {
+        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙØ¯ÙØ¯",
+        "result": 85,
+        "date": "2023-06-09"
+      },
+      {
+        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙÙÙ",
+        "result": 90,
+        "date": "2023-06-16"
+      }
     ]
   },
   {
-    "name": "خالد يوسف",
+    "name": "Ø®Ø§ÙØ¯ ÙÙØ³Ù",
     "code": "789012",
     "image": "https://github.com/aboelfooz/islamic-site/raw/main/images/student-002.jpg",
-    "overallLevel": "مبتدئ",
+    "overallLevel": "ÙØ¨ØªØ¯Ø¦",
     "partTests": [
-      { "partName": "الجزء الأول", "result": 70, "date": "2023-06-12" },
-      { "partName": "الجزء الثاني", "result": 65, "date": "2023-06-19" }
+      {
+        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ£ÙÙ",
+        "result": 70,
+        "date": "2023-06-12"
+      },
+      {
+        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ«Ø§ÙÙ",
+        "result": 65,
+        "date": "2023-06-19"
+      }
     ],
     "lessonTests": [
-      { "lessonName": "درس التوحيد", "result": 72, "date": "2023-06-07" },
-      { "lessonName": "درس الفقه", "result": 68, "date": "2023-06-14" }
+      {
+        "lessonName": "Ø¯Ø±Ø³ Ø§ÙØªÙØ­ÙØ¯",
+        "result": 72,
+        "date": "2023-06-07"
+      },
+      {
+        "lessonName": "Ø¯Ø±Ø³ Ø§ÙÙÙÙ",
+        "result": 68,
+        "date": "2023-06-14"
+      }
     ],
     "tajweedTests": [
-      { "testName": "اختبار المدود", "result": 60, "date": "2023-06-10" },
-      { "testName": "اختبار الوقف", "result": 75, "date": "2023-06-17" }
+      {
+        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙØ¯ÙØ¯",
+        "result": 60,
+        "date": "2023-06-10"
+      },
+      {
+        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙÙÙ",
+        "result": 75,
+        "date": "2023-06-17"
+      }
     ]
   },
   {
-    "name": "سعيد عمر",
+    "name": "Ø³Ø¹ÙØ¯ Ø¹ÙØ±",
     "code": "345678",
     "image": "https://github.com/aboelfooz/islamic-site/raw/main/images/student-003.jpg",
-    "overallLevel": "متوسط",
+    "overallLevel": "ÙØªÙØ³Ø·",
     "partTests": [
-      { "partName": "الجزء الأول", "result": 80, "date": "2023-06-13" },
-      { "partName": "الجزء الثاني", "result": 77, "date": "2023-06-20" }
+      {
+        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ£ÙÙ",
+        "result": 80,
+        "date": "2023-06-13"
+      },
+      {
+        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ«Ø§ÙÙ",
+        "result": 77,
+        "date": "2023-06-20"
+      }
     ],
     "lessonTests": [
-      { "lessonName": "درس التوحيد", "result": 83, "date": "2023-06-08" },
-      { "lessonName": "درس الفقه", "result": 79, "date": "2023-06-15" }
+      {
+        "lessonName": "Ø¯Ø±Ø³ Ø§ÙØªÙØ­ÙØ¯",
+        "result": 83,
+        "date": "2023-06-08"
+      },
+      {
+        "lessonName": "Ø¯Ø±Ø³ Ø§ÙÙÙÙ",
+        "result": 79,
+        "date": "2023-06-15"
+      }
     ],
     "tajweedTests": [
-      { "testName": "اختبار المدود", "result": 74, "date": "2023-06-11" },
-      { "testName": "اختبار الوقف", "result": 80, "date": "2023-06-18" }
+      {
+        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙØ¯ÙØ¯",
+        "result": 74,
+        "date": "2023-06-11"
+      },
+      {
+        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙÙÙ",
+        "result": 80,
+        "date": "2023-06-18"
+      }
     ]
   },
   {
-    "name": "علي حسن",
+    "name": "Ø¹ÙÙ Ø­Ø³Ù",
     "code": "901234",
     "image": "https://github.com/aboelfooz/islamic-site/raw/main/images/student-004.jpg",
-    "overallLevel": "متقدم",
+    "overallLevel": "ÙØªÙØ¯Ù",
     "partTests": [
-      { "partName": "الجزء الأول", "result": 95, "date": "2023-06-14" },
-      { "partName": "الجزء الثاني", "result": 93, "date": "2023-06-21" }
+      {
+        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ£ÙÙ",
+        "result": 95,
+        "date": "2023-06-14"
+      },
+      {
+        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ«Ø§ÙÙ",
+        "result": 93,
+        "date": "2023-06-21"
+      }
     ],
     "lessonTests": [
-      { "lessonName": "درس التوحيد", "result": 96, "date": "2023-06-09" },
-      { "lessonName": "درس الفقه", "result": 94, "date": "2023-06-16" }
+      {
+        "lessonName": "Ø¯Ø±Ø³ Ø§ÙØªÙØ­ÙØ¯",
+        "result": 96,
+        "date": "2023-06-09"
+      },
+      {
+        "lessonName": "Ø¯Ø±Ø³ Ø§ÙÙÙÙ",
+        "result": 94,
+        "date": "2023-06-16"
+      }
     ],
     "tajweedTests": [
-      { "testName": "اختبار المدود", "result": 92, "date": "2023-06-12" },
-      { "testName": "اختبار الوقف", "result": 94, "date": "2023-06-19" }
+      {
+        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙØ¯ÙØ¯",
+        "result": 92,
+        "date": "2023-06-12"
+      },
+      {
+        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙÙÙ",
+        "result": 94,
+        "date": "2023-06-19"
+      }
     ]
   },
   {
-    "name": "ماهر عبد الله",
+    "name": "ÙØ§ÙØ± Ø¹Ø¨Ø¯ Ø§ÙÙÙ",
     "code": "567890",
     "image": "https://github.com/aboelfooz/islamic-site/raw/main/images/student-005.jpg",
-    "overallLevel": "مبتدئ",
+    "overallLevel": "ÙØ¨ØªØ¯Ø¦",
     "partTests": [
-      { "partName": "الجزء الأول", "result": 65, "date": "2023-06-15" },
-      { "partName": "الجزء الثاني", "result": 60, "date": "2023-06-22" }
+      {
+        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ£ÙÙ",
+        "result": 65,
+        "date": "2023-06-15"
+      },
+      {
+        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ«Ø§ÙÙ",
+        "result": 60,
+        "date": "2023-06-22"
+      }
     ],
     "lessonTests": [
-      { "lessonName": "درس التوحيد", "result": 68, "date": "2023-06-10" },
-      { "lessonName": "درس الفقه", "result": 62, "date": "2023-06-17" }
+      {
+        "lessonName": "Ø¯Ø±Ø³ Ø§ÙØªÙØ­ÙØ¯",
+        "result": 68,
+        "date": "2023-06-10"
+      },
+      {
+        "lessonName": "Ø¯Ø±Ø³ Ø§ÙÙÙÙ",
+        "result": 62,
+        "date": "2023-06-17"
+      }
     ],
     "tajweedTests": [
-      { "testName": "اختبار المدود", "result": 55, "date": "2023-06-13" },
-      { "testName": "اختبار الوقف", "result": 60, "date": "2023-06-20" }
+      {
+        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙØ¯ÙØ¯",
+        "result": 55,
+        "date": "2023-06-13"
+      },
+      {
+        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙÙÙ",
+        "result": 60,
+        "date": "2023-06-20"
+      }
     ]
   },
   {
-    "name": "إبراهيم سامي",
+    "name": "Ø¥Ø¨Ø±Ø§ÙÙÙ Ø³Ø§ÙÙ",
     "code": "234567",
     "image": "https://github.com/aboelfooz/islamic-site/raw/main/images/student-006.jpg",
-    "overallLevel": "متوسط",
+    "overallLevel": "ÙØªÙØ³Ø·",
     "partTests": [
-      { "partName": "الجزء الأول", "result": 78, "date": "2023-06-16" },
-      { "partName": "الجزء الثاني", "result": 82, "date": "2023-06-23" }
+      {
+        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ£ÙÙ",
+        "result": 78,
+        "date": "2023-06-16"
+      },
+      {
+        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ«Ø§ÙÙ",
+        "result": 82,
+        "date": "2023-06-23"
+      }
     ],
     "lessonTests": [
-      { "lessonName": "درس التوحيد", "result": 81, "date": "2023-06-11" },
-      { "lessonName": "درس الفقه", "result": 79, "date": "2023-06-18" }
+      {
+        "lessonName": "Ø¯Ø±Ø³ Ø§ÙØªÙØ­ÙØ¯",
+        "result": 81,
+        "date": "2023-06-11"
+      },
+      {
+        "lessonName": "Ø¯Ø±Ø³ Ø§ÙÙÙÙ",
+        "result": 79,
+        "date": "2023-06-18"
+      }
     ],
     "tajweedTests": [
-      { "testName": "اختبار المدود", "result": 80, "date": "2023-06-14" },
-      { "testName": "اختبار الوقف", "result": 83, "date": "2023-06-21" }
+      {
+        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙØ¯ÙØ¯",
+        "result": 80,
+        "date": "2023-06-14"
+      },
+      {
+        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙÙÙ",
+        "result": 83,
+        "date": "2023-06-21"
+      }
     ]
   },
   {
-    "name": "يوسف عبد الرحمن",
+    "name": "ÙÙØ³Ù Ø¹Ø¨Ø¯ Ø§ÙØ±Ø­ÙÙ",
     "code": "890123",
     "image": "https://github.com/aboelfooz/islamic-site/raw/main/images/student-007.jpg",
-    "overallLevel": "متقدم",
+    "overallLevel": "ÙØªÙØ¯Ù",
     "partTests": [
-      { "partName": "الجزء الأول", "result": 91, "date": "2023-06-17" },
-      { "partName": "الجزء الثاني", "result": 89, "date": "2023-06-24" }
+      {
+        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ£ÙÙ",
+        "result": 91,
+        "date": "2023-06-17"
+      },
+      {
+        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ«Ø§ÙÙ",
+        "result": 89,
+        "date": "2023-06-24"
+      }
     ],
     "lessonTests": [
-      { "lessonName": "درس التوحيد", "result": 94, "date": "2023-06-12" },
-      { "lessonName": "درس الفقه", "result": 90, "date": "2023-06-19" }
+      {
+        "lessonName": "Ø¯Ø±Ø³ Ø§ÙØªÙØ­ÙØ¯",
+        "result": 94,
+        "date": "2023-06-12"
+      },
+      {
+        "lessonName": "Ø¯Ø±Ø³ Ø§ÙÙÙÙ",
+        "result": 90,
+        "date": "2023-06-19"
+      }
     ],
     "tajweedTests": [
-      { "testName": "اختبار المدود", "result": 88, "date": "2023-06-15" },
-      { "testName": "اختبار الوقف", "result": 91, "date": "2023-06-22" }
+      {
+        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙØ¯ÙØ¯",
+        "result": 88,
+        "date": "2023-06-15"
+      },
+      {
+        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙÙÙ",
+        "result": 91,
+        "date": "2023-06-22"
+      }
     ]
   },
   {
-    "name": "فهد مازن",
+    "name": "ÙÙØ¯ ÙØ§Ø²Ù",
     "code": "456789",
     "image": "https://github.com/aboelfooz/islamic-site/raw/main/images/student-008.jpg",
-    "overallLevel": "مبتدئ",
+    "overallLevel": "ÙØ¨ØªØ¯Ø¦",
     "partTests": [
-      { "partName": "الجزء الأول", "result": 72, "date": "2023-06-18" },
-      { "partName": "الجزء الثاني", "result": 68, "date": "2023-06-25" }
+      {
+        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ£ÙÙ",
+        "result": 72,
+        "date": "2023-06-18"
+      },
+      {
+        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ«Ø§ÙÙ",
+        "result": 68,
+        "date": "2023-06-25"
+      }
     ],
     "lessonTests": [
-      { "lessonName": "درس التوحيد", "result": 70, "date": "2023-06-13" },
-      { "lessonName": "درس الفقه", "result": 65, "date": "2023-06-20" }
+      {
+        "lessonName": "Ø¯Ø±Ø³ Ø§ÙØªÙØ­ÙØ¯",
+        "result": 70,
+        "date": "2023-06-13"
+      },
+      {
+        "lessonName": "Ø¯Ø±Ø³ Ø§ÙÙÙÙ",
+        "result": 65,
+        "date": "2023-06-20"
+      }
     ],
     "tajweedTests": [
-      { "testName": "اختبار المدود", "result": 66, "date": "2023-06-16" },
-      { "testName": "اختبار الوقف", "result": 70, "date": "2023-06-23" }
+      {
+        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙØ¯ÙØ¯",
+        "result": 66,
+        "date": "2023-06-16"
+      },
+      {
+        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙÙÙ",
+        "result": 70,
+        "date": "2023-06-23"
+      }
     ]
   },
   {
-    "name": "حسن طارق",
+    "name": "Ø­Ø³Ù Ø·Ø§Ø±Ù",
     "code": "678901",
     "image": "https://github.com/aboelfooz/islamic-site/raw/main/images/student-009.jpg",
-    "overallLevel": "متوسط",
+    "overallLevel": "ÙØªÙØ³Ø·",
     "partTests": [
-      { "partName": "الجزء الأول", "result": 84, "date": "2023-06-19" },
-      { "partName": "الجزء الثاني", "result": 80, "date": "2023-06-26" }
+      {
+        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ£ÙÙ",
+        "result": 84,
+        "date": "2023-06-19"
+      },
+      {
+        "partName": "Ø§ÙØ¬Ø²Ø¡ Ø§ÙØ«Ø§ÙÙ",
+        "result": 80,
+        "date": "2023-06-26"
+      }
     ],
     "lessonTests": [
-      { "lessonName": "درس التوحيد", "result": 85, "date": "2023-06-14" },
-      { "lessonName": "درس الفقه", "result": 82, "date": "2023-06-21" }
+      {
+        "lessonName": "Ø¯Ø±Ø³ Ø§ÙØªÙØ­ÙØ¯",
+        "result": 85,
+        "date": "2023-06-14"
+      },
+      {
+        "lessonName": "Ø¯Ø±Ø³ Ø§ÙÙÙÙ",
+        "result": 82,
+        "date": "2023-06-21"
+      }
     ],
     "tajweedTests": [
-      { "testName": "اختبار المدود", "result": 78, "date": "2023-06-17" },
-      { "testName": "اختبار الوقف", "result": 84, "date": "2023-06-24" }
+      {
+        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙØ¯ÙØ¯",
+        "result": 78,
+        "date": "2023-06-17"
+      },
+      {
+        "testName": "Ø§Ø®ØªØ¨Ø§Ø± Ø§ÙÙÙÙ",
+        "result": 84,
+        "date": "2023-06-24"
+      }
     ]
+  },
+  {
+    "name": "محمود",
+    "code": "964378",
+    "overallLevel": "مبتدئ",
+    "lessonTests": [],
+    "tajweedTests": []
+  },
+  {
+    "name": "Mohamed",
+    "code": "128739",
+    "overallLevel": "متوسط",
+    "lessonTests": [],
+    "tajweedTests": []
   }
 ]
