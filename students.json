@@ -162,5 +162,13 @@
     "lessonTests": [],
     "tajweedTests": [],
     "memorizationTests": []
+  },
+  {
+    "name": ".",
+    "code": "1234",
+    "overallLevel": "متوسط",
+    "lessonTests": [],
+    "tajweedTests": [],
+    "memorizationTests": []
   }
 ]
