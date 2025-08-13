@@ -81,19 +81,5 @@
         "date": "2025-08-13"
       }
     ]
-  },
-  {
-    "name": "علي الصالح",
-    "code": "999999",
-    "overallLevel": "متوسط",
-    "lessonTests": [],
-    "tajweedTests": [],
-    "memorizationTests": [
-      {
-        "testName": "الجزء العاشر",
-        "result": 100,
-        "date": "2025-08-13"
-      }
-    ]
   }
 ]
