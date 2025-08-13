@@ -50,36 +50,5 @@
         "date": "2025-08-13"
       }
     ]
-  },
-  {
-    "name": "يحيى زكريا الحجي",
-    "code": "123456",
-    "overallLevel": "متوسط",
-    "lessonTests": [
-      {
-        "lessonName": "فقه",
-        "result": 90,
-        "date": "2025-08-12"
-      }
-    ],
-    "tajweedTests": [
-      {
-        "testName": "مد لازم",
-        "result": 100,
-        "date": "2025-08-12"
-      }
-    ],
-    "memorizationTests": [
-      {
-        "testName": "الجزء الثاني",
-        "result": 50,
-        "date": "2025-08-12"
-      },
-      {
-        "testName": "الجزء الثاني 2",
-        "result": 90,
-        "date": "2025-08-13"
-      }
-    ]
   }
 ]
