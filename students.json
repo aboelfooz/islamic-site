@@ -113,7 +113,13 @@
     "overallLevel": "متقدم",
     "lessonTests": [],
     "tajweedTests": [],
-    "memorizationTests": []
+    "memorizationTests": [
+      {
+        "testName": "الجزء 22",
+        "result": 90,
+        "date": "2025-08-13"
+      }
+    ]
   },
   {
     "name": "عبد الفتاح عبد الرزاق كوسه",
