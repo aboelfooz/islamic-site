@@ -127,7 +127,13 @@
     "overallLevel": "متوسط",
     "lessonTests": [],
     "tajweedTests": [],
-    "memorizationTests": []
+    "memorizationTests": [
+      {
+        "testName": "الجزء 2",
+        "result": 82,
+        "date": "2025-08-13"
+      }
+    ]
   },
   {
     "name": "أسامة حامد كوسه",
