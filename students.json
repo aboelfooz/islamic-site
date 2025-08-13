@@ -27,7 +27,13 @@
         "date": "2025-08-12"
       }
     ],
-    "memorizationTests": []
+    "memorizationTests": [
+      {
+        "testName": "الجزء الأول",
+        "result": 99,
+        "date": "2025-08-13"
+      }
+    ]
   },
   {
     "name": "يحيى زكريا الحجي",
