@@ -6,8 +6,9 @@
     "lessonTests": [
       {
         "lessonName": "فقه",
-        "result": 111,
-        "date": "2025-08-13"
+        "result": 100,
+        "date": "2025-08-13",
+        "testName": "فقه"
       },
       {
         "lessonName": "سيرة",
