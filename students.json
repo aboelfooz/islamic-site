@@ -53,7 +53,13 @@
     "overallLevel": "متوسط",
     "lessonTests": [],
     "tajweedTests": [],
-    "memorizationTests": []
+    "memorizationTests": [
+      {
+        "testName": "الجزء الثالث",
+        "result": 82,
+        "date": "2025-08-13"
+      }
+    ]
   },
   {
     "name": "يوسف أحمد النجار",
