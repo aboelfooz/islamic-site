@@ -4,7 +4,13 @@
     "code": "100001",
     "overallLevel": "متوسط",
     "lessonTests": [],
-    "tajweedTests": [],
+    "tajweedTests": [
+      {
+        "testName": "المستوى الاول 1",
+        "result": 92,
+        "date": "2025-07-10"
+      }
+    ],
     "memorizationTests": []
   },
   {
