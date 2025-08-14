@@ -112,7 +112,13 @@
     "code": "100010",
     "overallLevel": "مبتدئ",
     "lessonTests": [],
-    "tajweedTests": [],
+    "tajweedTests": [
+      {
+        "testName": "المستوى الاول 1",
+        "result": 68,
+        "date": "2025-07-10"
+      }
+    ],
     "memorizationTests": []
   },
   {
