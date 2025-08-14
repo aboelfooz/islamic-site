@@ -34,7 +34,13 @@
     "code": "100004",
     "overallLevel": "متقدم",
     "lessonTests": [],
-    "tajweedTests": [],
+    "tajweedTests": [
+      {
+        "testName": "المستوى الاول 1",
+        "result": 78,
+        "date": "2025-07-10"
+      }
+    ],
     "memorizationTests": [
       {
         "testName": "الجزء 16",
