@@ -146,7 +146,13 @@
     "code": "100015",
     "overallLevel": "متقدم",
     "lessonTests": [],
-    "tajweedTests": [],
+    "tajweedTests": [
+      {
+        "testName": "المستوى الاول 1",
+        "result": 94,
+        "date": "2025-07-09"
+      }
+    ],
     "memorizationTests": [
       {
         "testName": "من الجزء 1 إلى الجزء 5",
