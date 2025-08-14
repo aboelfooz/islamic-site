@@ -180,7 +180,13 @@
     "code": "100014",
     "overallLevel": "متوسط",
     "lessonTests": [],
-    "tajweedTests": [],
+    "tajweedTests": [
+      {
+        "testName": "المستوى الاول 1",
+        "result": 54,
+        "date": "2025-07-10"
+      }
+    ],
     "memorizationTests": [
       {
         "testName": "الجزء 2",
