@@ -320,7 +320,13 @@
     "overallLevel": "مبتدئ",
     "lessonTests": [],
     "tajweedTests": [],
-    "memorizationTests": []
+    "memorizationTests": [
+      {
+        "testName": "الجزء الثاني",
+        "result": 96,
+        "date": "2025-08-24"
+      }
+    ]
   },
   {
     "name": "جعفر عبدالجبار باكير",
