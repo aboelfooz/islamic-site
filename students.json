@@ -98,7 +98,13 @@
         "date": "2025-07-10"
       }
     ],
-    "memorizationTests": []
+    "memorizationTests": [
+      {
+        "testName": "الجزء الثاني",
+        "result": 90,
+        "date": "2025-08-25"
+      }
+    ]
   },
   {
     "name": "عمر شريف ناصر",
