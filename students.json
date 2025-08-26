@@ -541,6 +541,13 @@
     "lessonTests": [],
     "tajweedTests": [],
     "memorizationTests": [],
-    "monthlyPages": []
+    "monthlyPages": [
+      {
+        "month": 1,
+        "year": 2023,
+        "pages": 100,
+        "goal": 20
+      }
+    ]
   }
 ]
