@@ -11,7 +11,15 @@
         "date": "2025-07-10"
       }
     ],
-    "memorizationTests": []
+    "memorizationTests": [],
+    "monthlyPages": [
+      {
+        "month": 1,
+        "year": 2025,
+        "pages": null,
+        "goal": 90
+      }
+    ]
   },
   {
     "name": "عبيدة عبد الرحمن حسن",
