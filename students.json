@@ -532,22 +532,5 @@
     "lessonTests": [],
     "tajweedTests": [],
     "memorizationTests": []
-  },
-  {
-    "name": "تجربة",
-    "code": "999999",
-    "overallLevel": "مبتدئ",
-    "image": null,
-    "lessonTests": [],
-    "tajweedTests": [],
-    "memorizationTests": [],
-    "monthlyPages": [
-      {
-        "month": 1,
-        "year": 2023,
-        "pages": 100,
-        "goal": 20
-      }
-    ]
   }
 ]
