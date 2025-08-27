@@ -405,7 +405,13 @@
     "overallLevel": "مبتدئ",
     "lessonTests": [],
     "tajweedTests": [],
-    "memorizationTests": []
+    "memorizationTests": [
+      {
+        "testName": "جزء تبارك",
+        "result": 91,
+        "date": "2025-08-27"
+      }
+    ]
   },
   {
     "name": "علي شعبان حج حمد",
