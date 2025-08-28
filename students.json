@@ -47,7 +47,15 @@
         "date": "2025-07-10"
       }
     ],
-    "memorizationTests": []
+    "memorizationTests": [],
+    "monthlyPages": [
+      {
+        "month": 8,
+        "year": 2025,
+        "pages": 13,
+        "goal": null
+      }
+    ]
   },
   {
     "name": "محمد حسن النجار",
