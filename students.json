@@ -303,6 +303,14 @@
         "result": 94,
         "date": "2025-08-27"
       }
+    ],
+    "monthlyPages": [
+      {
+        "month": 8,
+        "year": 2025,
+        "pages": 23,
+        "goal": null
+      }
     ]
   },
   {
