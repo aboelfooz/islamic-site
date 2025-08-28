@@ -421,7 +421,15 @@
     "overallLevel": "مبتدئ",
     "lessonTests": [],
     "tajweedTests": [],
-    "memorizationTests": []
+    "memorizationTests": [],
+    "monthlyPages": [
+      {
+        "month": 8,
+        "year": 2025,
+        "pages": 20,
+        "goal": null
+      }
+    ]
   },
   {
     "name": "محمد زكريا الصالح",
