@@ -737,7 +737,15 @@
     "overallLevel": "مبتدئ",
     "lessonTests": [],
     "tajweedTests": [],
-    "memorizationTests": []
+    "memorizationTests": [],
+    "monthlyPages": [
+      {
+        "month": 8,
+        "year": 2025,
+        "pages": 7,
+        "goal": null
+      }
+    ]
   },
   {
     "name": "يزن عبدالله النجار",
