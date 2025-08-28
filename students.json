@@ -100,6 +100,14 @@
         "result": 88,
         "date": "2025-08-25"
       }
+    ],
+    "monthlyPages": [
+      {
+        "month": 8,
+        "year": 2025,
+        "pages": 20,
+        "goal": null
+      }
     ]
   },
   {
