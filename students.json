@@ -18,6 +18,12 @@
         "year": 2025,
         "pages": null,
         "goal": 0
+      },
+      {
+        "month": 8,
+        "year": 2025,
+        "pages": 14,
+        "goal": null
       }
     ]
   },
