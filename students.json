@@ -453,7 +453,15 @@
     "overallLevel": "مبتدئ",
     "lessonTests": [],
     "tajweedTests": [],
-    "memorizationTests": []
+    "memorizationTests": [],
+    "monthlyPages": [
+      {
+        "month": 8,
+        "year": 2025,
+        "pages": 3,
+        "goal": null
+      }
+    ]
   },
   {
     "name": "أحمد محمد صفو",
