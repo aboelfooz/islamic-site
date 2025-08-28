@@ -39,7 +39,15 @@
         "date": "2025-07-09"
       }
     ],
-    "memorizationTests": []
+    "memorizationTests": [],
+    "monthlyPages": [
+      {
+        "month": 8,
+        "year": 2025,
+        "pages": 11,
+        "goal": null
+      }
+    ]
   },
   {
     "name": "عبد الرحمن عبد الجبار باكير",
