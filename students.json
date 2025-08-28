@@ -737,7 +737,15 @@
     "overallLevel": "متوسط",
     "lessonTests": [],
     "tajweedTests": [],
-    "memorizationTests": []
+    "memorizationTests": [],
+    "monthlyPages": [
+      {
+        "month": 8,
+        "year": 2025,
+        "pages": 13,
+        "goal": null
+      }
+    ]
   },
   {
     "name": "علي حميد الركاض",
