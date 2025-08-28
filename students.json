@@ -332,6 +332,14 @@
         "result": 82,
         "date": "2025-08-13"
       }
+    ],
+    "monthlyPages": [
+      {
+        "month": 8,
+        "year": 2025,
+        "pages": 15,
+        "goal": null
+      }
     ]
   },
   {
