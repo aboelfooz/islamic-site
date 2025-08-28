@@ -689,7 +689,15 @@
     "overallLevel": "مبتدئ",
     "lessonTests": [],
     "tajweedTests": [],
-    "memorizationTests": []
+    "memorizationTests": [],
+    "monthlyPages": [
+      {
+        "month": 8,
+        "year": 2025,
+        "pages": 10,
+        "goal": null
+      }
+    ]
   },
   {
     "name": "أحمد مصطفى النجار",
