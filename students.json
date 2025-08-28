@@ -681,7 +681,15 @@
     "overallLevel": "مبتدئ",
     "lessonTests": [],
     "tajweedTests": [],
-    "memorizationTests": []
+    "memorizationTests": [],
+    "monthlyPages": [
+      {
+        "month": 8,
+        "year": 2025,
+        "pages": 9,
+        "goal": null
+      }
+    ]
   },
   {
     "name": "حمزة يوسف الصالح",
