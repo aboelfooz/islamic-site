@@ -421,7 +421,13 @@
     "overallLevel": "مبتدئ",
     "lessonTests": [],
     "tajweedTests": [],
-    "memorizationTests": [],
+    "memorizationTests": [
+      {
+        "testName": "الجزء الأول",
+        "result": 94,
+        "date": "2025-08-28"
+      }
+    ],
     "monthlyPages": [
       {
         "month": 8,
