@@ -827,7 +827,14 @@
     "lessonTests": [],
     "tajweedTests": [],
     "memorizationTests": [],
-    "monthlyPages": []
+    "monthlyPages": [
+      {
+        "month": 8,
+        "year": 2025,
+        "pages": 5,
+        "goal": null
+      }
+    ]
   },
   {
     "name": "أحمد محمد حمد",
