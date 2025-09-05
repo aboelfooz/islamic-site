@@ -11,9 +11,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
-            padding: 0;
+            padding: 20px 0;
         }
         .login-container {
             background-color: white;
@@ -39,7 +39,6 @@
             background-color: #266158;
             display: flex;
             justify-content: space-around;
-            /* flex-direction: column; */
             align-items: center;
         }
          .imgadmin{
@@ -47,8 +46,6 @@
             width: 50px;
             border-radius: 9px;
             align-items: center;
-
-
         }
         h1 {
             color: #2c786c;
@@ -159,6 +156,29 @@
         .whatsapp-icon {
             color: #25D366;
         }
+        
+        /* رابط صفحة المسابقات */
+        .competition-link {
+            display: block;
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            text-align: center;
+            color: #2c786c;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .competition-link:hover {
+            background-color: #e9ecef;
+            color: #004445;
+        }
+        .competition-link i {
+            margin-left: 8px;
+        }
+        
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
@@ -186,6 +206,12 @@
             <div class="spinner"></div>
         </div>
         
+        <!-- رابط للذهاب إلى صفحة المسابقات -->
+        <a href="competitions.html" class="competition-link">
+            <i class="fas fa-trophy"></i>
+            الانتقال إلى صفحة المسابقات والفائزين
+        </a>
+        
         <div class="social-channels">
             <a href="https://youtube.com/channel/UCu1yt7Jn5NWcl3_HnDCcffA?si=nP25mVlif-qdqZWP" class="channel-link" target="_blank">
                 <i class="fab fa-youtube channel-icon youtube-icon"></i>
@@ -210,6 +236,11 @@
             const messageDiv = document.getElementById('message');
             const loadingDiv = document.getElementById('loading');
             
+            // إعدادات GitHub
+            let repoOwner = 'aboelfooz';
+            let repoName = 'islamic-site';
+            
+            // جلب بيانات الطلاب
             async function fetchStudents() {
                 try {
                     const response = await fetch('https://raw.githubusercontent.com/aboelfooz/islamic-site/main/students.json');
@@ -227,6 +258,7 @@
                     return data;
                 } catch (error) {
                     console.error('Error fetching students:', error);
+                    showMessage('حدث خطأ أثناء جلب البيانات', 'error');
                     return [];
                 }
             }
