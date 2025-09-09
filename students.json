@@ -232,6 +232,11 @@
         "testName": "الجزء الرابع",
         "result": 0,
         "date": "2025-08-25"
+      },
+      {
+        "testName": "الجزء الأربعاء",
+        "result": 92,
+        "date": "2025-09-07"
       }
     ],
     "monthlyPages": [
