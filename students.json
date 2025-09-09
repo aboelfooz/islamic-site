@@ -834,6 +834,11 @@
         "testName": "الجزء الأول",
         "result": 94,
         "date": "2025-09-07"
+      },
+      {
+        "testName": "الجزء الثاني",
+        "result": 96,
+        "date": "2025-09-08"
       }
     ],
     "monthlyPages": []
