@@ -1,28 +1,5 @@
 [
   {
-    "name": "محمد سليم حربلية ",
-    "code": "100001",
-    "overallLevel": "متوسط",
-    "lessonTests": [],
-    "tajweedTests": [],
-    "memorizationTests": [],
-    "monthlyPages": [
-      {
-        "month": 8,
-        "year": 2025,
-        "pages": 14,
-        "goal": null
-      },
-      {
-        "month": 1,
-        "year": 2025,
-        "pages": null,
-        "goal": 0
-      }
-    ],
-    "image": ""
-  },
-  {
     "name": "عبيدة عبد الرحمن حسن",
     "code": "100002",
     "overallLevel": "مبتدئ",
