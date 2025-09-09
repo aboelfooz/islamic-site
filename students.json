@@ -829,7 +829,13 @@
     "image": null,
     "lessonTests": [],
     "tajweedTests": [],
-    "memorizationTests": [],
+    "memorizationTests": [
+      {
+        "testName": "الجزء الأول",
+        "result": 94,
+        "date": "2025-09-07"
+      }
+    ],
     "monthlyPages": []
   }
 ]
