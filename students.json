@@ -1,27 +1,5 @@
 [
   {
-    "name": "عبيدة عبد الرحمن حسن",
-    "code": "100002",
-    "overallLevel": "مبتدئ",
-    "lessonTests": [],
-    "tajweedTests": [
-      {
-        "testName": "المستوى الاول 1",
-        "result": 33,
-        "date": "2025-07-09"
-      }
-    ],
-    "memorizationTests": [],
-    "monthlyPages": [
-      {
-        "month": 8,
-        "year": 2025,
-        "pages": 11,
-        "goal": null
-      }
-    ]
-  },
-  {
     "name": "عبد الرحمن عبد الجبار باكير",
     "code": "100003",
     "overallLevel": "متوسط",
