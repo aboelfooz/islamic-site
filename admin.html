@@ -611,7 +611,7 @@
             // جلب بيانات المسابقات من GitHub
             async function fetchCompetitions() {
                 try {
-                    const response = await fetch(`https://raw.githubusercontent.com/${repoOwner}/${repoName}/main/competitions.json`);
+                    const response = await fetch(`https://raw.githubusercontent.com/${repoOwner}/${repoName}/main/data.json`);
                     
                     if (response.ok) {
                         const data = await response.json();
