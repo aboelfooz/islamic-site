@@ -308,6 +308,11 @@
         "testName": "الجزء 23",
         "result": 90,
         "date": "2025-09-01"
+      },
+      {
+        "testName": "الجزء 24",
+        "result": 91,
+        "date": "2025-09-23"
       }
     ],
     "monthlyPages": [
