@@ -127,7 +127,13 @@
         "date": "2025-07-10"
       }
     ],
-    "memorizationTests": [],
+    "memorizationTests": [
+      {
+        "testName": "الجزء 3",
+        "result": 87,
+        "date": "2025-09-23"
+      }
+    ],
     "monthlyPages": [
       {
         "month": 8,
